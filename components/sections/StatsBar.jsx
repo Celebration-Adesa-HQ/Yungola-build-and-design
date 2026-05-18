@@ -72,7 +72,7 @@ export default function StatsBar() {
             >
               <span
                 className="text-4xl lg:text-5xl font-900 text-[#F5C518] mb-1"
-                style={{ fontFamily: "var(--font-cinzel)", fontWeight: 900 }}
+                style={{ fontFamily: "var(--font-montserrat)", fontWeight: 900 }}
                 aria-label={`${value}${suffix} ${label}`}
               >
                 <CountUp target={value} suffix={suffix} active={visible} />

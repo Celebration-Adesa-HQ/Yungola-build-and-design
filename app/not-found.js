@@ -9,30 +9,24 @@ export const metadata = {
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-[#0D0D0D] flex items-center justify-center relative overflow-hidden">
-      {/* Architectural grid */}
-      <div className="absolute inset-0 architectural-grid opacity-40 pointer-events-none" />
-
-      {/* Decorative corners */}
-      <div className="absolute top-12 left-12 w-16 h-16 border-t-2 border-l-2 border-[#F5C518]/30" aria-hidden="true" />
-      <div className="absolute top-12 right-12 w-16 h-16 border-t-2 border-r-2 border-[#F5C518]/30" aria-hidden="true" />
-      <div className="absolute bottom-12 left-12 w-16 h-16 border-b-2 border-l-2 border-[#F5C518]/30" aria-hidden="true" />
-      <div className="absolute bottom-12 right-12 w-16 h-16 border-b-2 border-r-2 border-[#F5C518]/30" aria-hidden="true" />
+      {/* Premium editorial glow */}
+      <div className="absolute inset-0 editorial-glow opacity-60 pointer-events-none" />
 
       <div className="relative z-10 text-center px-6 max-w-lg mx-auto">
         {/* 404 number */}
         <div
           className="text-[8rem] lg:text-[12rem] font-900 leading-none text-gradient-yellow mb-0 select-none"
-          style={{ fontFamily: "var(--font-cinzel)", fontWeight: 900 }}
+          style={{ fontFamily: "var(--font-montserrat)", fontWeight: 900 }}
           aria-hidden="true"
         >
           404
         </div>
 
         <h1
-          className="text-2xl lg:text-4xl font-700 text-white mb-4 -mt-4"
-          style={{ fontFamily: "var(--font-cinzel)" }}
+          className="text-2xl lg:text-4xl font-800 text-white mb-4 -mt-4"
+          style={{ fontFamily: "var(--font-montserrat)", fontWeight: 800 }}
         >
-          Blueprint Not Found
+          Page Not Found
         </h1>
         <p
           className="text-[#6B7280] mb-10 leading-relaxed"

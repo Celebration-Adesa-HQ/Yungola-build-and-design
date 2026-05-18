@@ -50,8 +50,8 @@ export default function ShowroomTeaser() {
         </p>
         <h2
           id="showroom-heading"
-          className="text-4xl lg:text-7xl font-700 text-white mb-6 leading-tight"
-          style={{ fontFamily: "var(--font-cinzel)" }}
+          className="text-4xl lg:text-7xl font-800 text-white mb-6 leading-tight"
+          style={{ fontFamily: "var(--font-montserrat)", fontWeight: 800 }}
         >
           Visit Our <span className="text-gradient-yellow">Showroom</span>
         </h2>
@@ -71,12 +71,6 @@ export default function ShowroomTeaser() {
           <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />
         </Link>
       </div>
-
-      {/* Decorative corners */}
-      <div className="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-[#F5C518]/40" aria-hidden="true" />
-      <div className="absolute top-8 right-8 w-12 h-12 border-t-2 border-r-2 border-[#F5C518]/40" aria-hidden="true" />
-      <div className="absolute bottom-8 left-8 w-12 h-12 border-b-2 border-l-2 border-[#F5C518]/40" aria-hidden="true" />
-      <div className="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-[#F5C518]/40" aria-hidden="true" />
     </section>
   );
 }

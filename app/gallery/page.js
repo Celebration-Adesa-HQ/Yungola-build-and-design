@@ -132,8 +132,8 @@ function Lightbox({ items, index, onClose, onPrev, onNext }) {
               {item.type}
             </span>
             <h3
-              className="text-lg text-white mt-1"
-              style={{ fontFamily: "var(--font-cinzel)" }}
+              className="text-lg text-white mt-1 font-700"
+              style={{ fontFamily: "var(--font-montserrat)", fontWeight: 700 }}
             >
               {item.title}
             </h3>
@@ -173,7 +173,7 @@ export default function GalleryPage() {
     <>
       {/* Page Hero */}
       <section className="bg-[#0D0D0D] pt-40 pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 architectural-grid opacity-40 pointer-events-none" />
+        <div className="absolute inset-0 editorial-glow opacity-50 pointer-events-none" />
         <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
           <p
             className="text-xs text-[#F5C518] uppercase tracking-[0.25em] mb-4"
@@ -183,7 +183,7 @@ export default function GalleryPage() {
           </p>
           <h1
             className="text-5xl lg:text-8xl font-900 text-white"
-            style={{ fontFamily: "var(--font-cinzel)", fontWeight: 900 }}
+            style={{ fontFamily: "var(--font-montserrat)", fontWeight: 900 }}
           >
             Project Gallery
           </h1>
@@ -250,8 +250,8 @@ export default function GalleryPage() {
                       {project.type}
                     </span>
                     <h3
-                      className="text-base font-600 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      style={{ fontFamily: "var(--font-cinzel)" }}
+                      className="text-base font-700 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{ fontFamily: "var(--font-montserrat)", fontWeight: 700 }}
                     >
                       {project.title}
                     </h3>

@@ -31,10 +31,10 @@ export default function ContactPage() {
   return (
     <>
       <section className="bg-[#0D0D0D] pt-40 pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 architectural-grid opacity-40 pointer-events-none" />
+        <div className="absolute inset-0 editorial-glow opacity-50 pointer-events-none" />
         <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
           <p className="text-xs text-[#F5C518] uppercase tracking-[0.25em] mb-4" style={{fontFamily:"var(--font-montserrat)"}}>Get In Touch</p>
-          <h1 className="text-5xl lg:text-8xl font-900 text-white" style={{fontFamily:"var(--font-cinzel)",fontWeight:900}}>Contact Us</h1>
+          <h1 className="text-5xl lg:text-8xl font-900 text-white" style={{fontFamily:"var(--font-montserrat)",fontWeight:900}}>Contact Us</h1>
         </div>
       </section>
 
@@ -42,11 +42,11 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-14">
           {/* Left: Form */}
           <div>
-            <h2 className="text-3xl font-700 text-[#0D0D0D] mb-8 yellow-underline" style={{fontFamily:"var(--font-cinzel)"}}>Send a Message</h2>
+            <h2 className="text-3xl font-800 text-[#0D0D0D] mb-8 yellow-underline" style={{fontFamily:"var(--font-montserrat)",fontWeight:800}}>Send a Message</h2>
             {submitted ? (
               <div className="bg-[#0D0D0D] rounded-sm p-10 text-center">
                 <CheckCircle size={48} className="text-[#F5C518] mx-auto mb-4" />
-                <h3 className="text-xl text-white font-600 mb-2" style={{fontFamily:"var(--font-cinzel)"}}>Message Sent!</h3>
+                <h3 className="text-xl text-white font-700 mb-2" style={{fontFamily:"var(--font-montserrat)",fontWeight:700}}>Message Sent!</h3>
                 <p className="text-[#6B7280]" style={{fontFamily:"var(--font-josefin)"}}>We'll get back to you within 24 hours.</p>
               </div>
             ) : (
@@ -87,7 +87,7 @@ export default function ContactPage() {
 
           {/* Right: Info + Map */}
           <div>
-            <h2 className="text-3xl font-700 text-[#0D0D0D] mb-8 yellow-underline" style={{fontFamily:"var(--font-cinzel)"}}>Find Us</h2>
+            <h2 className="text-3xl font-800 text-[#0D0D0D] mb-8 yellow-underline" style={{fontFamily:"var(--font-montserrat)",fontWeight:800}}>Find Us</h2>
             <div className="space-y-5 mb-8">
               {contacts.map(({ Icon, label, value, href }) => (
                 <div key={label} className="flex items-start gap-4">

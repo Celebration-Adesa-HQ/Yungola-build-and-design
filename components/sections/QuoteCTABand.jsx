@@ -29,7 +29,7 @@ export default function QuoteCTABand() {
         <h2
           id="cta-heading"
           className="text-4xl lg:text-7xl font-900 text-[#0D0D0D] mb-6 leading-tight"
-          style={{ fontFamily: "var(--font-cinzel)", fontWeight: 900 }}
+          style={{ fontFamily: "var(--font-montserrat)", fontWeight: 900 }}
         >
           Ready to Build?
           <br />

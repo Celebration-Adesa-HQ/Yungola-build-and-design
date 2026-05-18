@@ -1,132 +1,129 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { Quote } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 
 const testimonials = [
   {
-    id: 1,
-    quote:
-      "Yungola Build and Design transformed our vision into a home that exceeded every expectation. Their attention to detail and professionalism is unmatched.",
-    name: "Adebayo Okonkwo",
-    location: "Lagos, Nigeria",
-    role: "Homeowner",
+    quote: "Working with Yungola Build and Design was a masterclass in architectural execution. They took our vague concepts and transformed them into a breathtaking, cinematic reality. Every space feels intentional, luxurious, and perfectly aligned with our vision.",
+    name: "Jonh Deep",
+    title: "CEO ECCorp - Italy",
+    avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuC9YE1HRVdWRV9PGP9xeLbdBUI9EfAA-1wulvIDs6w7WELoD-9bW5Z7KdzYNb_B1LG7BOd5C1H_OZrH7H7HCOzAzpoh1-PorK_awbeTuZzN2L5HPTtBCtaSieMuw_0CrXr0pbwbZjmqaoPmkkmx1EANfZrC5rdNCg89X-P2qYK0rlkCyVy0g7J09Nv3qIUP8NY9m_cW8BEJX2Kk1J9UIteByvoyk2m1BFg4vAaUYAWI5kcIcK8QMcCxc8woiJzpDuxMB5BVriJmRX8W",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDeVE3tT_PKdQ4HL1h5b2Ou9AZDP6eSkknGHOeKdmRxPj4gA1ThfOHNWJ8zbaPEwagSK5fYiPR4y-Si4xCrY16p9-ljl3A4Y6Pr24zuOYDXdKrLAMOWfjvkEveJ1UFLvDIjVJ_xEH0g3FFvQcPV9gdxk40TQumuXwYMMAXLTgd1jhZAZuTNHH3kFGDM5w2zOcUxDBrYwrLujkIpaFAo8GAvoJfWjS2rYJSe2HFQgNbov46HcX-LZZmAPsLW8ouUCL1TJvUjSH8oZ063",
   },
   {
-    id: 2,
-    quote:
-      "From design to final construction, the team was outstanding. They delivered our commercial complex on time and within budget. Highly recommended.",
-    name: "Chioma Adeyemi",
-    location: "Abuja, Nigeria",
-    role: "Property Developer",
+    quote: "Yungola's attention to structural precision and modern editorial aesthetics is unmatched in Nigeria. From the initial 3D models to the final bespoke furniture curation, they delivered an absolute masterpiece.",
+    name: "Amina Aliko",
+    title: "Real Estate Investor - Lagos",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80",
   },
   {
-    id: 3,
-    quote:
-      "The renovation of our villa was breathtaking. Yungola's creative approach brought a completely new life to our space. Truly premium craftsmanship.",
-    name: "Emmanuel Nwosu",
-    location: "Port Harcourt, Nigeria",
-    role: "Villa Owner",
+    quote: "The level of professionalism, transparency, and design authority Yungola brought to our commercial project was extraordinary. They don't just build structures; they curate timeless environments.",
+    name: "Marcus Vance",
+    title: "Managing Director - London",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80",
+    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1920&q=80",
   },
 ];
 
 export default function Testimonials() {
-  const [active, setActive] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
   const [visible, setVisible] = useState(false);
-  const ref = useRef(null);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
-      { threshold: 0.2 }
+      ([entry]) => {
+        if (entry.isIntersecting) setVisible(true);
+      },
+      { threshold: 0.1 }
     );
-    if (ref.current) observer.observe(ref.current);
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setActive((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-    return () => clearInterval(timer);
+    const interval = setInterval(() => {
+      setActiveIndex((current) => (current + 1) % testimonials.length);
+    }, 8000);
+    return () => clearInterval(interval);
   }, []);
 
-  const current = testimonials[active];
+  const current = testimonials[activeIndex];
 
   return (
     <section
-      ref={ref}
-      className="section-pad bg-[#FFF8DC]"
-      aria-labelledby="testimonials-heading"
+      ref={sectionRef}
+      className="relative w-full mx-auto py-20 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-[800px] flex items-center justify-center bg-charcoal-900 font-montserrat antialiased"
     >
-      <div className="max-w-4xl mx-auto px-6 text-center">
-        <p
-          className="text-xs text-[#E0A800] uppercase tracking-[0.2em] mb-3"
-          style={{ fontFamily: "var(--font-montserrat)" }}
-        >
-          Client Stories
-        </p>
-        <h2
-          id="testimonials-heading"
-          className={`text-3xl lg:text-5xl font-700 text-[#0D0D0D] mb-14 transition-all duration-700 ${
-            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-          }`}
-          style={{ fontFamily: "var(--font-cinzel)" }}
-        >
-          What Our Clients Say
-        </h2>
-
-        {/* Testimonial Card */}
-        <div
-          className={`transition-all duration-500 ${
-            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-          style={{ transitionDelay: "200ms" }}
-        >
-          <Quote
-            size={40}
-            className="text-[#E0A800]/40 mx-auto mb-6"
-            aria-hidden="true"
+      <div
+        className={`relative w-full h-[600px] flex items-center transition-all duration-1000 ${
+          visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+        }`}
+      >
+        {/* Left side: Background Image */}
+        <div className="absolute left-0 top-0 w-full lg:w-[70%] h-full z-0 overflow-hidden shadow-2xl">
+          <Image
+            alt={current.name}
+            className="w-full h-full object-cover transition-all duration-1000 scale-100 hover:scale-105"
+            src={current.image}
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 70vw"
           />
-          <p
-            className="text-xl lg:text-2xl text-[#2C2C2C] italic leading-relaxed mb-8 min-h-[120px]"
-            style={{ fontFamily: "var(--font-josefin)", fontWeight: 300 }}
-            key={current.id}
-          >
-            "{current.quote}"
-          </p>
-          <div>
-            <p
-              className="font-600 text-[#0D0D0D]"
-              style={{ fontFamily: "var(--font-montserrat)" }}
-            >
-              {current.name}
-            </p>
-            <p
-              className="text-sm text-[#6B7280] mt-1"
-              style={{ fontFamily: "var(--font-josefin)" }}
-            >
-              {current.role} · {current.location}
-            </p>
-          </div>
+          <div className="absolute inset-0 bg-black/30 lg:hidden z-10"></div>
         </div>
 
-        {/* Dots */}
-        <div className="flex items-center justify-center gap-3 mt-10" role="tablist" aria-label="Testimonial navigation">
-          {testimonials.map((t, i) => (
-            <button
-              key={t.id}
-              role="tab"
-              aria-selected={active === i}
-              aria-label={`View testimonial ${i + 1}`}
-              onClick={() => setActive(i)}
-              className={`rounded-full transition-all duration-300 cursor-pointer ${
-                active === i
-                  ? "w-8 h-2 bg-[#E0A800]"
-                  : "w-2 h-2 bg-[#E0A800]/30 hover:bg-[#E0A800]/60"
-              }`}
-            />
-          ))}
+        {/* Right side: Content Block */}
+        <div className="absolute right-0 lg:right-[5%] xl:right-[10%] z-10 w-full md:w-[600px] bg-charcoal-800 shadow-2xl p-8 md:p-12 lg:p-16 flex flex-col justify-center border-t-2 border-primary-fixed transition-all duration-700 backdrop-blur-sm bg-opacity-95">
+          {/* Label */}
+          <p className="text-gold uppercase tracking-widest text-xs font-semibold mb-4 font-montserrat">
+            Testimonials
+          </p>
+          {/* Heading */}
+          <h2 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-wider mb-8 font-oswald">
+            Our Clients Say
+          </h2>
+          {/* Quote */}
+          <div className="min-h-[140px] flex items-center mb-10">
+            <p className="text-gray-300 italic leading-relaxed text-base md:text-lg transition-opacity duration-500 font-hanken">
+              "{current.quote}"
+            </p>
+          </div>
+          {/* User Info */}
+          <div className="flex items-center mb-10 transition-all duration-500">
+            <div className="relative w-12 h-12 rounded-full overflow-hidden mr-4 flex-shrink-0 border border-gold/40">
+              <Image
+                alt={current.name}
+                className="object-cover"
+                src={current.avatar}
+                fill
+                sizes="48px"
+              />
+            </div>
+            <div>
+              <div className="flex items-center">
+                <span className="w-4 h-[1px] bg-gray-500 mr-2"></span>
+                <p className="text-gray-200 font-semibold text-sm font-montserrat tracking-wider">{current.name}</p>
+              </div>
+              <p className="text-gray-400 text-xs mt-1 ml-6 font-hanken tracking-wide">{current.title}</p>
+            </div>
+          </div>
+          {/* Pagination Controls */}
+          <div className="flex items-center space-x-3">
+            {testimonials.map((_, index) => (
+              <div
+                key={index}
+                onClick={() => setActiveIndex(index)}
+                className={`h-1 cursor-pointer transition-all duration-300 ${
+                  activeIndex === index
+                    ? "w-12 bg-gold box-content"
+                    : "w-6 bg-gray-600 hover:bg-gray-400"
+                }`}
+              ></div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

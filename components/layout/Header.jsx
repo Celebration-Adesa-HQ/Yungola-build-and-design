@@ -3,18 +3,37 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 
 const navLinks = [
-  { href: "/gallery", label: "Gallery" },
-  { href: "/showroom", label: "Showroom" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/", label: "HOME" },
+  { href: "/about", label: "ABOUT" },
+  {
+    href: "/showroom",
+    label: "SERVICES",
+    hasDropdown: true,
+    dropdownItems: [
+      { href: "/gallery#architecture", label: "ARCHITECTURAL DESIGN" },
+      { href: "/gallery#interior", label: "INTERIOR DESIGN" },
+      { href: "/gallery#exterior", label: "EXTERIOR DESIGN" },
+      { href: "/gallery#furniture", label: "FURNITURE DESIGN" },
+      { href: "/gallery#decor", label: "DECOR PLAN" },
+      { href: "/gallery#modelling", label: "3D MODELLING" },
+    ],
+  },
+  {
+    href: "/gallery",
+    label: "PROJECTS",
+    hasDropdown: false,
+  },
+  { href: "/blog", label: "BLOG" },
+  { href: "/contact", label: "CONTACT" },
 ];
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -25,6 +44,7 @@ export default function Header() {
 
   useEffect(() => {
     setMobileOpen(false);
+    setOpenDropdown(null);
   }, [pathname]);
 
   useEffect(() => {
@@ -35,134 +55,153 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 flex justify-between items-center px-6 md:px-margin-desktop py-gutter ${
           scrolled
-            ? "bg-[#0D0D0D] shadow-[0_2px_24px_rgba(0,0,0,0.5)]"
+            ? "bg-background/95 backdrop-blur-md border-b border-outline-variant/30 shadow-lg"
             : "bg-transparent"
-        }`}
+        } animate-fade-up`}
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center gap-3 group"
-            aria-label="Yungola Build and Design Home"
-          >
-            <div className="flex items-center justify-center w-10 h-10 bg-[#F5C518] rounded-sm">
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-                <polygon points="11,2 20,18 2,18" fill="#0D0D0D" />
-              </svg>
-            </div>
-            <div className="flex flex-col leading-none">
-              <span
-                className="font-[family-name:var(--font-cinzel)] text-sm font-700 text-white tracking-wide uppercase"
-                style={{ fontFamily: "var(--font-cinzel)" }}
-              >
-                Yungola
-              </span>
-              <span
-                className="text-[10px] text-[#F5C518] uppercase tracking-[0.18em]"
-                style={{ fontFamily: "var(--font-montserrat)" }}
-              >
-                Build &amp; Design
-              </span>
-            </div>
-          </Link>
+        {/* Brand identity */}
+        <Link href="/" className="flex flex-col select-none group">
+          <h1 className="font-headline-md text-headline-md font-bold tracking-widest text-white uppercase leading-none group-hover:text-primary-fixed transition-colors duration-300">
+            YUNGOLA
+          </h1>
+          <span className="font-label-caps text-[10px] tracking-widest text-white/70 uppercase mt-1">
+            Architecture
+          </span>
+        </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-8" aria-label="Main navigation">
-            {navLinks.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                className={`relative text-sm uppercase tracking-[0.12em] transition-colors duration-200 pb-1 ${
-                  pathname === href
-                    ? "text-[#F5C518]"
-                    : "text-white/80 hover:text-white"
-                }`}
-                style={{ fontFamily: "var(--font-montserrat)" }}
-              >
-                {label}
-                {pathname === href && (
-                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#F5C518] rounded-full" />
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex gap-gutter items-center">
+          {navLinks.map(({ href, label, hasDropdown, dropdownItems }) => {
+            const isActive = pathname === href;
+            return (
+              <div key={label} className="relative group cursor-pointer py-2">
+                <Link
+                  href={href}
+                  className={`font-label-caps text-label-caps uppercase transition-colors duration-300 flex items-center gap-1 ${
+                    isActive
+                      ? "text-primary-fixed font-bold"
+                      : "text-white hover:text-primary-fixed"
+                  }`}
+                >
+                  {label}
+                  {hasDropdown && (
+                    <ChevronDown size={14} className="text-current opacity-70 transition-transform duration-300 group-hover:rotate-180" />
+                  )}
+                </Link>
+
+                {/* Dropdown Menu */}
+                {hasDropdown && dropdownItems && (
+                  <div className="absolute top-full left-0 mt-2 w-64 bg-surface border-t-2 border-primary-fixed shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                    <ul className="flex flex-col py-2">
+                      {dropdownItems.map((item) => (
+                        <li key={item.label}>
+                          <Link
+                            href={item.href}
+                            className="block px-6 py-3 font-label-caps text-label-caps text-on-surface hover:bg-surface-container-high hover:text-primary-fixed transition-colors duration-200 uppercase"
+                          >
+                            {item.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 )}
-              </Link>
-            ))}
-            <Link
-              href="/quote"
-              id="nav-quote-btn"
-              className="ml-4 px-6 py-2.5 bg-[#F5C518] text-[#0D0D0D] text-sm font-700 uppercase tracking-[0.1em] rounded-sm hover:bg-[#E0A800] transition-colors duration-200 cursor-pointer"
-              style={{ fontFamily: "var(--font-montserrat)", fontWeight: 700 }}
-            >
-              Get a Quote
-            </Link>
-          </nav>
+              </div>
+            );
+          })}
+        </nav>
 
-          {/* Mobile hamburger */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden text-white p-2 rounded-sm hover:bg-white/10 transition-colors cursor-pointer"
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            aria-expanded={mobileOpen}
-          >
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
+        {/* Mobile Hamburger toggle */}
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="md:hidden text-white hover:text-primary-fixed transition-colors p-2 cursor-pointer"
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileOpen}
+        >
+          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </header>
 
-      {/* Mobile Overlay */}
+      {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-[#0D0D0D] flex flex-col transition-all duration-400 lg:hidden ${
-          mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        className={`fixed inset-0 z-40 bg-[#131313] flex flex-col transition-all duration-500 md:hidden ${
+          mobileOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
         }`}
       >
-        <div className="flex items-center justify-between px-6 h-20">
-          <Link href="/" className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-10 h-10 bg-[#F5C518] rounded-sm">
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-                <polygon points="11,2 20,18 2,18" fill="#0D0D0D" />
-              </svg>
-            </div>
-            <div className="flex flex-col leading-none">
-              <span className="text-sm font-700 text-white tracking-wide uppercase" style={{ fontFamily: "var(--font-cinzel)" }}>
-                Yungola
-              </span>
-              <span className="text-[10px] text-[#F5C518] uppercase tracking-[0.18em]" style={{ fontFamily: "var(--font-montserrat)" }}>
-                Build &amp; Design
-              </span>
-            </div>
-          </Link>
+        <div className="flex items-center justify-between px-6 py-gutter">
+          <div className="flex flex-col">
+            <h1 className="font-headline-md text-headline-md font-bold tracking-widest text-white uppercase leading-none">
+              YUNGOLA
+            </h1>
+            <span className="font-label-caps text-[10px] tracking-widest text-white/70 uppercase mt-1">
+              Architecture
+            </span>
+          </div>
           <button
             onClick={() => setMobileOpen(false)}
-            className="text-white p-2 cursor-pointer"
+            className="text-white hover:text-primary-fixed p-2 cursor-pointer"
             aria-label="Close menu"
           >
             <X size={24} />
           </button>
         </div>
 
-        <nav className="flex flex-col items-center justify-center flex-1 gap-10" aria-label="Mobile navigation">
-          {navLinks.map(({ href, label }, i) => (
-            <Link
-              key={href}
-              href={href}
-              className={`text-3xl uppercase tracking-[0.15em] font-300 transition-colors duration-200 ${
-                pathname === href ? "text-[#F5C518]" : "text-white hover:text-[#F5C518]"
-              }`}
-              style={{
-                fontFamily: "var(--font-cinzel)",
-                animationDelay: `${i * 80}ms`,
-              }}
-            >
-              {label}
-            </Link>
-          ))}
+        <nav className="flex flex-col items-center justify-center flex-1 gap-6 w-full px-8 overflow-y-auto py-8" aria-label="Mobile navigation">
+          {navLinks.map(({ href, label, hasDropdown, dropdownItems }) => {
+            const isActive = pathname === href;
+            const isDropdownOpen = openDropdown === label;
+            return (
+              <div key={label} className="flex flex-col items-center w-full">
+                <div className="flex items-center gap-2">
+                  <Link
+                    href={href}
+                    onClick={() => setMobileOpen(false)}
+                    className={`text-2xl uppercase tracking-[0.15em] font-bold transition-colors duration-300 ${
+                      isActive ? "text-primary-fixed" : "text-white hover:text-primary-fixed"
+                    }`}
+                    style={{ fontFamily: "var(--font-montserrat)" }}
+                  >
+                    {label}
+                  </Link>
+                  {hasDropdown && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setOpenDropdown(isDropdownOpen ? null : label);
+                      }}
+                      className="p-1 text-white hover:text-primary-fixed transition-colors cursor-pointer"
+                      aria-label="Toggle submenu"
+                    >
+                      <ChevronDown size={20} className={`transition-transform duration-300 ${isDropdownOpen ? "rotate-180 text-primary-fixed" : ""}`} />
+                    </button>
+                  )}
+                </div>
+
+                {hasDropdown && dropdownItems && (
+                  <div className={`flex flex-col items-center gap-3 overflow-hidden transition-all duration-300 ${isDropdownOpen ? "max-h-64 mt-4 opacity-100" : "max-h-0 opacity-0"}`}>
+                    {dropdownItems.map((item) => (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        onClick={() => setMobileOpen(false)}
+                        className="font-label-caps text-sm text-on-surface-variant hover:text-primary-fixed transition-colors uppercase tracking-widest"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
           <Link
             href="/quote"
-            className="mt-6 px-10 py-4 bg-[#F5C518] text-[#0D0D0D] text-lg font-700 uppercase tracking-[0.1em] rounded-sm hover:bg-[#E0A800] transition-colors duration-200 cursor-pointer"
-            style={{ fontFamily: "var(--font-montserrat)", fontWeight: 700 }}
+            onClick={() => setMobileOpen(false)}
+            className="mt-6 px-10 py-5 bg-primary-container text-on-primary-fixed text-sm font-bold uppercase tracking-widest btn-glow whitespace-nowrap animate-fade-up"
           >
-            Get a Quote
+            START YOUR PROJECT
           </Link>
         </nav>
       </div>
