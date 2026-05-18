@@ -11,7 +11,7 @@ export const metadata = {
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col w-full bg-background min-h-screen">
+    <div className="flex flex-col w-full bg-darkBackground min-h-screen">
       <Hero />
       <About />
       <ServicesOverview />

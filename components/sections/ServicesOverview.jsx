@@ -108,7 +108,7 @@ export default function ServicesOverview() {
     <section
       ref={ref}
       id="services"
-      className="py-24 bg-acrino-dark border-b border-acrino-border relative overflow-hidden"
+      className="py-24 bg-darkBackground border-b border-outline-variant relative overflow-hidden"
     >
       <div className="container mx-auto px-4 md:px-8 max-w-7xl">
         
@@ -118,10 +118,10 @@ export default function ServicesOverview() {
             visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
-          <span className="text-acrino-gold text-xs font-bold tracking-[0.2em] uppercase mb-4 block font-montserrat">
+          <span className="text-accent text-xs font-bold tracking-[0.2em] uppercase mb-4 block font-montserrat">
             Yungola
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold uppercase tracking-wider text-white font-oswald">
+          <h2 className="text-4xl md:text-5xl font-bold uppercase tracking-wider text-darkForeground font-oswald">
             Our Services
           </h2>
         </div>
@@ -132,7 +132,7 @@ export default function ServicesOverview() {
           {/* Left Arrow */}
           <button
             onClick={handlePrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -ml-4 md:-ml-12 z-20 w-10 h-10 rounded-full bg-white/10 hover:bg-acrino-gold text-white flex items-center justify-center transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-acrino-gold cursor-pointer"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -ml-4 md:-ml-12 z-20 w-10 h-10 rounded-full bg-on-surface-variant/10 hover:bg-accent text-darkForeground hover:text-on-primary flex items-center justify-center transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-accent cursor-pointer border border-outline-variant/30"
             aria-label="Previous service"
           >
             <svg
@@ -159,12 +159,12 @@ export default function ServicesOverview() {
           >
             {/* Desktop layout: Grid */}
             <div className="hidden md:grid grid-cols-3 gap-6 relative z-10">
-              {servicesData.map((service, index) => {
+              {servicesData.map((service) => {
                 const isImageBg = !!service.image;
                 return (
                   <div
                     key={service.id}
-                    className={`service-card bg-[#2d3136] p-10 text-center border border-transparent hover:border-acrino-gold/30 flex flex-col items-center group/card cursor-pointer relative overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl min-h-[400px] ${
+                    className={`service-card bg-surface-container p-10 text-center border border-outline-variant hover:border-accent/30 flex flex-col items-center group/card cursor-pointer relative overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl min-h-[400px] rounded-sm ${
                       isImageBg ? "relative" : ""
                     }`}
                   >
@@ -177,19 +177,19 @@ export default function ServicesOverview() {
                           fill
                           sizes="(max-width: 768px) 100vw, 33vw"
                         />
-                        <div className="absolute inset-0 bg-black/60 z-10 transition-opacity duration-300 group-hover/card:bg-black/75"></div>
+                        <div className="absolute inset-0 bg-darkBackground/60 z-10 transition-opacity duration-300 group-hover/card:bg-darkBackground/75"></div>
                         <div className="relative z-20 flex flex-col h-full items-center justify-between flex-grow w-full">
-                          <div className="text-acrino-gold mb-6 transition-transform duration-300 group-hover/card:scale-110">
+                          <div className="text-accent mb-6 transition-transform duration-300 group-hover/card:scale-110">
                             {service.icon}
                           </div>
-                          <h3 className="text-lg font-bold uppercase tracking-widest mb-4 text-white font-oswald">
+                          <h3 className="text-lg font-bold uppercase tracking-widest mb-4 text-darkForeground font-oswald">
                             {service.title}
                           </h3>
-                          <p className="text-white/80 text-sm leading-relaxed mb-8 font-light flex-grow font-montserrat">
+                          <p className="text-darkSecondaryForeground text-sm leading-relaxed mb-8 font-light flex-grow font-hanken">
                             {service.description}
                           </p>
                           <a
-                            className="inline-flex items-center text-white/80 group-hover/card:text-acrino-gold text-xs font-bold tracking-[0.2em] uppercase transition-colors duration-300 mt-auto font-montserrat"
+                            className="inline-flex items-center text-darkSecondaryForeground group-hover/card:text-accent text-xs font-bold tracking-[0.2em] uppercase transition-colors duration-300 mt-auto font-montserrat"
                             href="/showroom"
                           >
                             Read More
@@ -212,17 +212,17 @@ export default function ServicesOverview() {
                       </>
                     ) : (
                       <>
-                        <div className="text-acrino-gold mb-6 transition-transform duration-300 group-hover/card:scale-110">
+                        <div className="text-accent mb-6 transition-transform duration-300 group-hover/card:scale-110">
                           {service.icon}
                         </div>
-                        <h3 className="text-lg font-bold uppercase tracking-widest mb-4 text-white font-oswald">
+                        <h3 className="text-lg font-bold uppercase tracking-widest mb-4 text-darkForeground font-oswald">
                           {service.title}
                         </h3>
-                        <p className="text-acrino-gray text-sm leading-relaxed mb-8 font-light flex-grow font-montserrat">
+                        <p className="text-on-surface-variant text-sm leading-relaxed mb-8 font-light flex-grow font-hanken">
                           {service.description}
                         </p>
                         <a
-                          className="inline-flex items-center text-acrino-gray group-hover/card:text-acrino-gold text-xs font-bold tracking-[0.2em] uppercase transition-colors duration-300 mt-auto font-montserrat"
+                          className="inline-flex items-center text-on-surface-variant group-hover/card:text-accent text-xs font-bold tracking-[0.2em] uppercase transition-colors duration-300 mt-auto font-montserrat"
                           href="/showroom"
                         >
                           Read More
@@ -259,7 +259,7 @@ export default function ServicesOverview() {
                   return (
                     <div key={service.id} className="w-full flex-shrink-0 px-2">
                       <div
-                        className={`service-card bg-[#2d3136] p-10 text-center border border-transparent hover:border-acrino-gold/30 flex flex-col items-center group/card cursor-pointer relative overflow-hidden transition-all duration-300 hover:shadow-2xl min-h-[400px]`}
+                        className={`service-card bg-surface-container p-10 text-center border border-outline-variant hover:border-accent/30 flex flex-col items-center group/card cursor-pointer relative overflow-hidden transition-all duration-300 hover:shadow-2xl min-h-[400px] rounded-sm`}
                       >
                         {isImageBg ? (
                           <>
@@ -270,19 +270,19 @@ export default function ServicesOverview() {
                               fill
                               sizes="100vw"
                             />
-                            <div className="absolute inset-0 bg-black/60 z-10 transition-opacity duration-300 group-hover/card:bg-black/75"></div>
+                            <div className="absolute inset-0 bg-darkBackground/60 z-10 transition-opacity duration-300 group-hover/card:bg-darkBackground/75"></div>
                             <div className="relative z-20 flex flex-col h-full items-center justify-between flex-grow w-full">
-                              <div className="text-acrino-gold mb-6 transition-transform duration-300 group-hover/card:scale-110">
+                              <div className="text-accent mb-6 transition-transform duration-300 group-hover/card:scale-110">
                                 {service.icon}
                               </div>
-                              <h3 className="text-lg font-bold uppercase tracking-widest mb-4 text-white font-oswald">
+                              <h3 className="text-lg font-bold uppercase tracking-widest mb-4 text-darkForeground font-oswald">
                                 {service.title}
                               </h3>
-                              <p className="text-white/80 text-sm leading-relaxed mb-8 font-light flex-grow font-montserrat">
+                              <p className="text-darkSecondaryForeground text-sm leading-relaxed mb-8 font-light flex-grow font-hanken">
                                 {service.description}
                               </p>
                               <a
-                                className="inline-flex items-center text-white/80 group-hover/card:text-acrino-gold text-xs font-bold tracking-[0.2em] uppercase transition-colors duration-300 mt-auto font-montserrat"
+                                className="inline-flex items-center text-darkSecondaryForeground group-hover/card:text-accent text-xs font-bold tracking-[0.2em] uppercase transition-colors duration-300 mt-auto font-montserrat"
                                 href="/showroom"
                               >
                                 Read More
@@ -305,17 +305,17 @@ export default function ServicesOverview() {
                           </>
                         ) : (
                           <>
-                            <div className="text-acrino-gold mb-6 transition-transform duration-300 group-hover/card:scale-110">
+                            <div className="text-accent mb-6 transition-transform duration-300 group-hover/card:scale-110">
                               {service.icon}
                             </div>
-                            <h3 className="text-lg font-bold uppercase tracking-widest mb-4 text-white font-oswald">
+                            <h3 className="text-lg font-bold uppercase tracking-widest mb-4 text-darkForeground font-oswald">
                               {service.title}
                             </h3>
-                            <p className="text-acrino-gray text-sm leading-relaxed mb-8 font-light flex-grow font-montserrat">
+                            <p className="text-on-surface-variant text-sm leading-relaxed mb-8 font-light flex-grow font-hanken">
                               {service.description}
                             </p>
                             <a
-                              className="inline-flex items-center text-acrino-gray group-hover/card:text-acrino-gold text-xs font-bold tracking-[0.2em] uppercase transition-colors duration-300 mt-auto font-montserrat"
+                              className="inline-flex items-center text-on-surface-variant group-hover/card:text-accent text-xs font-bold tracking-[0.2em] uppercase transition-colors duration-300 mt-auto font-montserrat"
                               href="/showroom"
                             >
                               Read More
@@ -340,14 +340,14 @@ export default function ServicesOverview() {
                     </div>
                   );
                 })}
-              </div>
+               </div>
             </div>
           </div>
 
           {/* Right Arrow */}
           <button
             onClick={handleNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 -mr-4 md:-mr-12 z-20 w-10 h-10 rounded-full bg-white/10 hover:bg-acrino-gold text-white flex items-center justify-center transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-acrino-gold cursor-pointer"
+            className="absolute right-0 top-1/2 -translate-y-1/2 -mr-4 md:-mr-12 z-20 w-10 h-10 rounded-full bg-on-surface-variant/10 hover:bg-accent text-darkForeground hover:text-on-primary flex items-center justify-center transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-accent cursor-pointer border border-outline-variant/30"
             aria-label="Next service"
           >
             <svg
@@ -374,7 +374,7 @@ export default function ServicesOverview() {
               key={i}
               onClick={() => setActiveIndex(i)}
               className={`h-1 transition-all duration-300 cursor-pointer ${
-                activeIndex === i ? "w-8 bg-acrino-gold" : "w-8 bg-white/20 hover:bg-white/40"
+                activeIndex === i ? "w-8 bg-accent" : "w-8 bg-on-surface-variant/20 hover:bg-on-surface-variant/40"
               }`}
               aria-label={`Go to slide ${i + 1}`}
             ></button>

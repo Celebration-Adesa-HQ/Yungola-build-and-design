@@ -55,7 +55,7 @@ export default function Testimonials() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full mx-auto py-20 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-[800px] flex items-center justify-center bg-charcoal-900 font-montserrat antialiased"
+      className="relative w-full mx-auto py-20 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-[800px] flex items-center justify-center bg-darkBackground font-montserrat antialiased border-b border-outline-variant"
     >
       <div
         className={`relative w-full h-[600px] flex items-center transition-all duration-1000 ${
@@ -72,28 +72,28 @@ export default function Testimonials() {
             priority
             sizes="(max-width: 1024px) 100vw, 70vw"
           />
-          <div className="absolute inset-0 bg-black/30 lg:hidden z-10"></div>
+          <div className="absolute inset-0 bg-darkBackground/30 lg:hidden z-10"></div>
         </div>
 
         {/* Right side: Content Block */}
-        <div className="absolute right-0 lg:right-[5%] xl:right-[10%] z-10 w-full md:w-[600px] bg-charcoal-800 shadow-2xl p-8 md:p-12 lg:p-16 flex flex-col justify-center border-t-2 border-primary-fixed transition-all duration-700 backdrop-blur-sm bg-opacity-95">
+        <div className="absolute right-0 lg:right-[5%] xl:right-[10%] z-10 w-full md:w-[600px] bg-surface-container shadow-2xl p-8 md:p-12 lg:p-16 flex flex-col justify-center border-t-2 border-accent transition-all duration-700 backdrop-blur-sm bg-opacity-95 rounded-sm">
           {/* Label */}
-          <p className="text-gold uppercase tracking-widest text-xs font-semibold mb-4 font-montserrat">
+          <p className="text-accent uppercase tracking-widest text-xs font-semibold mb-4 font-montserrat">
             Testimonials
           </p>
           {/* Heading */}
-          <h2 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-wider mb-8 font-oswald">
+          <h2 className="text-darkForeground text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-wider mb-8 font-oswald">
             Our Clients Say
           </h2>
           {/* Quote */}
           <div className="min-h-[140px] flex items-center mb-10">
-            <p className="text-gray-300 italic leading-relaxed text-base md:text-lg transition-opacity duration-500 font-hanken">
+            <p className="text-on-surface-variant italic leading-relaxed text-base md:text-lg transition-opacity duration-500 font-hanken">
               "{current.quote}"
             </p>
           </div>
           {/* User Info */}
           <div className="flex items-center mb-10 transition-all duration-500">
-            <div className="relative w-12 h-12 rounded-full overflow-hidden mr-4 flex-shrink-0 border border-gold/40">
+            <div className="relative w-12 h-12 rounded-full overflow-hidden mr-4 flex-shrink-0 border border-accent/40">
               <Image
                 alt={current.name}
                 className="object-cover"
@@ -104,10 +104,10 @@ export default function Testimonials() {
             </div>
             <div>
               <div className="flex items-center">
-                <span className="w-4 h-[1px] bg-gray-500 mr-2"></span>
-                <p className="text-gray-200 font-semibold text-sm font-montserrat tracking-wider">{current.name}</p>
+                <span className="w-4 h-[1px] bg-outline-variant mr-2"></span>
+                <p className="text-darkForeground font-semibold text-sm font-montserrat tracking-wider">{current.name}</p>
               </div>
-              <p className="text-gray-400 text-xs mt-1 ml-6 font-hanken tracking-wide">{current.title}</p>
+              <p className="text-darkSecondaryForeground text-xs mt-1 ml-6 font-hanken tracking-wide">{current.title}</p>
             </div>
           </div>
           {/* Pagination Controls */}
@@ -118,8 +118,8 @@ export default function Testimonials() {
                 onClick={() => setActiveIndex(index)}
                 className={`h-1 cursor-pointer transition-all duration-300 ${
                   activeIndex === index
-                    ? "w-12 bg-gold box-content"
-                    : "w-6 bg-gray-600 hover:bg-gray-400"
+                    ? "w-12 bg-accent box-content"
+                    : "w-6 bg-on-surface-variant/30 hover:bg-on-surface-variant/60"
                 }`}
               ></div>
             ))}

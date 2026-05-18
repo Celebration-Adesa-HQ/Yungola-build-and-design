@@ -54,14 +54,14 @@ export default function StatsBar() {
   return (
     <section
       ref={ref}
-      className="bg-[#1A1A1A] py-12 lg:py-14 relative overflow-hidden"
+      className="bg-darkBackground py-12 lg:py-14 relative overflow-hidden border-b border-outline-variant"
       aria-label="Company statistics"
     >
       {/* Subtle yellow glow */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#F5C518]/4 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/5 to-transparent pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 divide-y-0 lg:divide-x lg:divide-white/8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 divide-y-0 lg:divide-x lg:divide-outline-variant/30">
           {stats.map(({ value, suffix, label }, i) => (
             <div
               key={label}
@@ -71,15 +71,13 @@ export default function StatsBar() {
               style={{ transitionDelay: `${i * 120}ms` }}
             >
               <span
-                className="text-4xl lg:text-5xl font-900 text-[#F5C518] mb-1"
-                style={{ fontFamily: "var(--font-montserrat)", fontWeight: 900 }}
+                className="text-4xl lg:text-5xl font-bold text-accent mb-1 font-montserrat"
                 aria-label={`${value}${suffix} ${label}`}
               >
                 <CountUp target={value} suffix={suffix} active={visible} />
               </span>
               <span
-                className="text-xs text-[#6B7280] uppercase tracking-[0.15em] mt-1"
-                style={{ fontFamily: "var(--font-montserrat)" }}
+                className="text-xs text-on-surface-variant uppercase tracking-[0.15em] mt-1 font-montserrat"
               >
                 {label}
               </span>

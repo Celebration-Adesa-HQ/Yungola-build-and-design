@@ -20,7 +20,7 @@ export default function ShowroomTeaser() {
   return (
     <section
       ref={ref}
-      className="relative min-h-[70vh] flex items-center justify-center overflow-hidden"
+      className="relative min-h-[70vh] flex items-center justify-center overflow-hidden border-b border-outline-variant"
       aria-labelledby="showroom-heading"
     >
       {/* Background */}
@@ -34,7 +34,7 @@ export default function ShowroomTeaser() {
       />
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-[#0D0D0D]/80" />
+      <div className="absolute inset-0 bg-darkBackground/80" />
 
       {/* Content */}
       <div
@@ -43,29 +43,25 @@ export default function ShowroomTeaser() {
         }`}
       >
         <p
-          className="text-xs text-[#F5C518] uppercase tracking-[0.25em] mb-4"
-          style={{ fontFamily: "var(--font-montserrat)" }}
+          className="text-xs text-accent uppercase tracking-[0.25em] mb-4 font-montserrat font-bold"
         >
           Virtual Experience
         </p>
         <h2
           id="showroom-heading"
-          className="text-4xl lg:text-7xl font-800 text-white mb-6 leading-tight"
-          style={{ fontFamily: "var(--font-montserrat)", fontWeight: 800 }}
+          className="text-4xl lg:text-7xl font-bold text-darkForeground mb-6 leading-tight font-oswald uppercase tracking-wide"
         >
-          Visit Our <span className="text-gradient-yellow">Showroom</span>
+          Visit Our <span className="text-accent">Showroom</span>
         </h2>
         <p
-          className="text-lg text-white/60 mb-10 leading-relaxed"
-          style={{ fontFamily: "var(--font-josefin)", fontWeight: 300 }}
+          className="text-lg text-on-surface-variant mb-10 leading-relaxed font-hanken font-light"
         >
           See designs up close. Explore material choices, interior styles, and completed room setups that will inspire your next build.
         </p>
         <Link
           href="/showroom"
           id="showroom-teaser-btn"
-          className="group inline-flex items-center gap-3 px-10 py-4 bg-[#F5C518] text-[#0D0D0D] text-sm font-700 uppercase tracking-[0.12em] rounded-sm hover:bg-[#E0A800] transition-all duration-200 cursor-pointer shadow-[0_4px_32px_rgba(245,197,24,0.35)]"
-          style={{ fontFamily: "var(--font-montserrat)", fontWeight: 700 }}
+          className="group inline-flex items-center gap-3 px-10 py-4 bg-accent text-on-primary text-sm font-bold uppercase tracking-[0.12em] rounded-sm hover:bg-accentDark transition-all duration-200 cursor-pointer shadow-[0_4px_32px_rgba(245,196,0,0.35)] font-montserrat"
         >
           Explore Showroom
           <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />
