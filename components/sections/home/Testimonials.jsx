@@ -2,32 +2,10 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-
-const testimonials = [
-  {
-    quote: "Working with Yungola Build and Design was a masterclass in architectural execution. They took our vague concepts and transformed them into a breathtaking, cinematic reality. Every space feels intentional, luxurious, and perfectly aligned with our vision.",
-    name: "Jonh Deep",
-    title: "CEO ECCorp - Italy",
-    avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuC9YE1HRVdWRV9PGP9xeLbdBUI9EfAA-1wulvIDs6w7WELoD-9bW5Z7KdzYNb_B1LG7BOd5C1H_OZrH7H7HCOzAzpoh1-PorK_awbeTuZzN2L5HPTtBCtaSieMuw_0CrXr0pbwbZjmqaoPmkkmx1EANfZrC5rdNCg89X-P2qYK0rlkCyVy0g7J09Nv3qIUP8NY9m_cW8BEJX2Kk1J9UIteByvoyk2m1BFg4vAaUYAWI5kcIcK8QMcCxc8woiJzpDuxMB5BVriJmRX8W",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDeVE3tT_PKdQ4HL1h5b2Ou9AZDP6eSkknGHOeKdmRxPj4gA1ThfOHNWJ8zbaPEwagSK5fYiPR4y-Si4xCrY16p9-ljl3A4Y6Pr24zuOYDXdKrLAMOWfjvkEveJ1UFLvDIjVJ_xEH0g3FFvQcPV9gdxk40TQumuXwYMMAXLTgd1jhZAZuTNHH3kFGDM5w2zOcUxDBrYwrLujkIpaFAo8GAvoJfWjS2rYJSe2HFQgNbov46HcX-LZZmAPsLW8ouUCL1TJvUjSH8oZ063",
-  },
-  {
-    quote: "Yungola's attention to structural precision and modern editorial aesthetics is unmatched in Nigeria. From the initial 3D models to the final bespoke furniture curation, they delivered an absolute masterpiece.",
-    name: "Amina Aliko",
-    title: "Real Estate Investor - Lagos",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80",
-  },
-  {
-    quote: "The level of professionalism, transparency, and design authority Yungola brought to our commercial project was extraordinary. They don't just build structures; they curate timeless environments.",
-    name: "Marcus Vance",
-    title: "Managing Director - London",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80",
-    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1920&q=80",
-  },
-];
+import { homeContent } from "@/lib/data/siteContent";
 
 export default function Testimonials() {
+  const testimonials = homeContent.testimonials;
   const [activeIndex, setActiveIndex] = useState(0);
   const [visible, setVisible] = useState(false);
   const sectionRef = useRef(null);
@@ -48,7 +26,7 @@ export default function Testimonials() {
       setActiveIndex((current) => (current + 1) % testimonials.length);
     }, 8000);
     return () => clearInterval(interval);
-  }, []);
+  }, [testimonials.length]);
 
   const current = testimonials[activeIndex];
 
@@ -82,7 +60,7 @@ export default function Testimonials() {
             Testimonials
           </p>
           {/* Heading */}
-          <h2 className="text-darkForeground text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-wider mb-8 font-oswald">
+          <h2 className="text-darkForeground text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-wider mb-8 font-montserrat">
             Our Clients Say
           </h2>
           {/* Quote */}

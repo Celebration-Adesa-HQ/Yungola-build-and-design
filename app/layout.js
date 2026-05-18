@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import WhatsAppFloat from "@/components/layout/WhatsAppFloat";
 import { Calendar, Phone } from "lucide-react";
 import Link from "next/link";
+import { navigation, homeContent } from "@/lib/data/siteContent";
 
 const hankenGrotesk = Hanken_Grotesk({
   variable: "--font-hanken",
@@ -88,22 +89,20 @@ export default function RootLayout({ children }) {
         >
           <div className="max-w-3xl mx-auto px-6">
             <p className="text-xs text-accent uppercase tracking-[0.2em] mb-3 font-montserrat font-bold">
-              Come See Us
+              {homeContent.showroomTeaser.badge}
             </p>
             <h2
               id="book-heading"
-              className="text-3xl lg:text-5xl font-bold uppercase tracking-wide text-darkForeground mb-6 font-oswald"
+              className="text-3xl lg:text-5xl font-bold uppercase tracking-wide text-darkForeground mb-6 font-montserrat"
             >
-              Book a Showroom Visit
+              {homeContent.showroomTeaser.title}
             </h2>
             <p className="text-darkSecondaryForeground mb-10 max-w-xl mx-auto font-hanken text-sm leading-relaxed font-light">
-              Experience our designs in person. Walk through completed room
-              setups, touch real materials, and meet our design consultants to
-              discuss your upcoming project.
+              {homeContent.showroomTeaser.desc}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <a
-                href="tel:+2348000000000"
+                href={navigation.footer.phoneHref}
                 className="flex items-center justify-center gap-2 px-10 py-5 bg-accent text-on-primary text-xs font-bold uppercase tracking-[0.15em] rounded-sm hover:bg-accentDark transition-colors duration-200 shadow-xl w-full sm:w-auto font-montserrat"
               >
                 <Phone size={16} />

@@ -2,8 +2,11 @@
 
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { homeContent } from "@/lib/data/siteContent";
 
 export default function QuoteCTABand() {
+  const { quoteBand } = homeContent;
+
   return (
     <section
       className="bg-accent py-20 lg:py-24 relative overflow-hidden"
@@ -23,27 +26,25 @@ export default function QuoteCTABand() {
         <p
           className="text-xs text-darkBackground/60 uppercase tracking-[0.25em] mb-4 font-montserrat font-bold"
         >
-          Let&apos;s Work Together
+          {quoteBand.badge}
         </p>
         <h2
           id="cta-heading"
-          className="text-4xl lg:text-7xl font-bold text-darkBackground mb-6 leading-tight font-oswald uppercase tracking-wide"
+          className="text-4xl lg:text-7xl font-bold text-darkBackground mb-6 leading-tight font-montserrat uppercase tracking-wide whitespace-pre-line"
         >
-          Ready to Build?
-          <br />
-          Let&apos;s Talk.
+          {quoteBand.title}
         </h2>
         <p
           className="text-lg text-darkBackground/70 max-w-lg mx-auto mb-10 font-hanken font-light"
         >
-          Get a free consultation and discover what Yungola Build and Design can create for you.
+          {quoteBand.desc}
         </p>
         <Link
-          href="/quote"
+          href={quoteBand.ctaLink}
           id="cta-band-quote-btn"
           className="group inline-flex items-center gap-3 px-10 py-4 bg-darkBackground text-darkForeground text-sm font-bold uppercase tracking-[0.12em] rounded-sm hover:bg-surface-container transition-all duration-200 cursor-pointer shadow-[0_4px_24px_rgba(0,0,0,0.2)] font-montserrat"
         >
-          Request a Free Quote
+          {quoteBand.ctaLabel}
           <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />
         </Link>
       </div>

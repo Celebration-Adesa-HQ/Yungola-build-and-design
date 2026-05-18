@@ -1,45 +1,46 @@
 import { MapPin, Phone, Mail, Clock, MessageSquare } from "lucide-react";
+import { contactContent } from "@/lib/data/siteContent";
+
+const icons = [MapPin, Phone, Mail, Clock];
 
 export default function StudioDirectory() {
-  const contacts = [
-    { Icon: MapPin, label: "Headquarters", value: "Lekki Phase 1, Lagos, Nigeria", href: null },
-    { Icon: Phone, label: "Direct Line", value: "+234 800 YUNGOLA (+234 800 000 0000)", href: "tel:+2348000000000" },
-    { Icon: Mail, label: "Electronic Mail", value: "hello@yungolabuildanddesign.com", href: "mailto:hello@yungolabuildanddesign.com" },
-    { Icon: Clock, label: "Operating Hours", value: "Mon – Fri: 8:00 AM – 6:00 PM (WAT)", href: null },
-  ];
+  const { directory } = contactContent;
 
   return (
     <div className="lg:col-span-5 space-y-12">
       <div>
         <span className="text-accent text-xs font-bold tracking-[0.2em] uppercase block mb-3 font-montserrat">
-          Studio Directory
+          {directory.badge}
         </span>
-        <h2 className="text-3xl font-bold uppercase text-darkForeground mb-8 font-oswald tracking-wide border-b border-outline-variant pb-4">
-          Find Our Studio
+        <h2 className="text-3xl font-bold uppercase text-darkForeground mb-8 font-montserrat tracking-wide border-b border-outline-variant pb-4">
+          {directory.title}
         </h2>
 
         <div className="space-y-8">
-          {contacts.map(({ Icon, label, value, href }) => (
-            <div key={label} className="flex items-start gap-5 group">
-              <div className="w-12 h-12 bg-surface-container rounded-sm flex items-center justify-center flex-shrink-0 border border-outline-variant group-hover:border-accent transition-colors shadow-lg">
-                <Icon size={20} className="text-accent group-hover:scale-110 transition-transform duration-300" aria-hidden="true" />
-              </div>
-              <div>
-                <p className="text-[11px] text-accent uppercase tracking-[0.15em] mb-1 font-montserrat font-bold">
-                  {label}
-                </p>
-                {href ? (
-                  <a href={href} className="text-sm md:text-base text-darkForeground hover:text-accent transition-colors font-hanken font-semibold block">
-                    {value}
-                  </a>
-                ) : (
-                  <p className="text-sm md:text-base text-darkSecondaryForeground font-hanken leading-relaxed">
-                    {value}
+          {directory.list.map(({ label, value, href }, index) => {
+            const Icon = icons[index] || MapPin;
+            return (
+              <div key={label} className="flex items-start gap-5 group">
+                <div className="w-12 h-12 bg-surface-container rounded-sm flex items-center justify-center flex-shrink-0 border border-outline-variant group-hover:border-accent transition-colors shadow-lg">
+                  <Icon size={20} className="text-accent group-hover:scale-110 transition-transform duration-300" aria-hidden="true" />
+                </div>
+                <div>
+                  <p className="text-[11px] text-accent uppercase tracking-[0.15em] mb-1 font-montserrat font-bold">
+                    {label}
                   </p>
-                )}
+                  {href ? (
+                    <a href={href} className="text-sm md:text-base text-darkForeground hover:text-accent transition-colors font-hanken font-semibold block">
+                      {value}
+                    </a>
+                  ) : (
+                    <p className="text-sm md:text-base text-darkSecondaryForeground font-hanken leading-relaxed">
+                      {value}
+                    </p>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
@@ -76,7 +77,7 @@ export default function StudioDirectory() {
             id="contact-whatsapp-btn"
             className="flex-1 flex items-center justify-center gap-3 py-4 bg-[#25D366] text-[#1f2226] text-xs font-bold uppercase tracking-[0.15em] rounded-sm hover:bg-[#20bc5a] transition-all duration-300 shadow-lg cursor-pointer font-montserrat hover:translate-y-[-2px]"
           >
-            <MessageSquare size={18} /> WhatsApp Chat
+            <MessageSquare size={18} /> {directory.whatsappLabel}
           </a>
           <a
             href="https://instagram.com"
@@ -85,7 +86,7 @@ export default function StudioDirectory() {
             id="contact-instagram-btn"
             className="flex-1 flex items-center justify-center gap-3 py-4 bg-surface-container border border-outline-variant text-darkForeground text-xs font-bold uppercase tracking-[0.15em] rounded-sm hover:border-accent hover:text-accent transition-all duration-300 shadow-lg cursor-pointer font-montserrat hover:translate-y-[-2px]"
           >
-            Instagram
+            {directory.instagramLabel}
           </a>
         </div>
       </div>

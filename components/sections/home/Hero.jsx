@@ -4,32 +4,8 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const slides = [
-  {
-    id: 1,
-    subHeadline: "Architectural Design",
-    headline: "Secluded Bali Villas",
-    bgImage:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80",
-    link: "/gallery",
-  },
-  {
-    id: 2,
-    subHeadline: "Residential Curation",
-    headline: "The Monolith House",
-    bgImage:
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80",
-    link: "/gallery",
-  },
-  {
-    id: 3,
-    subHeadline: "Master Construction",
-    headline: "Horizon Estate",
-    bgImage:
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1920&q=80",
-    link: "/gallery",
-  },
-];
+import { homeContent } from "@/lib/data/siteContent";
+const slides = homeContent.hero.slides;
 
 export default function Hero() {
   const [current, setCurrent] = useState(0);
@@ -101,7 +77,7 @@ export default function Hero() {
 
               <Link
                 href={slide.link}
-                className="bg-[#f5c518] text-black px-8 py-4 uppercase tracking-[0.2em] text-sm font-semibold flex items-center gap-3 rounded-sm shadow-lg hover:bg-yellow-400 transition"
+                className="bg-[#ffe08b] text-[#131313] px-8 py-4 uppercase tracking-[0.2em] text-sm font-semibold flex items-center gap-3 rounded-sm shadow-lg hover:bg-[#ffe08b]/90 transition"
               >
                 See Project
                 <svg
@@ -163,7 +139,7 @@ export default function Hero() {
             key={i}
             onClick={() => setCurrent(i)}
             className={`h-1 transition-all duration-300 ${
-              current === i ? "w-10 bg-[#f5c518]" : "w-6 bg-white/30"
+              current === i ? "w-10 bg-[#ffe08b]" : "w-6 bg-white/30"
             }`}
           />
         ))}

@@ -2,8 +2,11 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { showroomContent } from "@/lib/data/siteContent";
 
 export default function ShowHero() {
+  const { hero } = showroomContent;
+
   return (
     <section className="relative min-h-[50vh] md:min-h-[60vh] flex items-center overflow-hidden border-b border-[#4e4633]/50 bg-[#131313]">
       {/* Background Grid Lines */}
@@ -24,7 +27,7 @@ export default function ShowHero() {
         transition={{ duration: 1.5, ease: "easeOut" }}
         className="absolute inset-0 bg-cover bg-center z-0"
         style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1920&q=80')`,
+          backgroundImage: `url('${hero.bgImage}')`,
         }}
         aria-hidden="true"
       />
@@ -43,7 +46,12 @@ export default function ShowHero() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-[0.1em] font-montserrat mb-6 text-white"
         >
-          Showroom <span className="text-[#ffe08b]">&</span> Services
+          {hero.title.split(" ").map((word, i, arr) => (
+            <span key={word}>
+              {word === "&" ? <span className="text-[#ffe08b]">{word}</span> : word}
+              {i < arr.length - 1 ? " " : ""}
+            </span>
+          ))}
         </motion.h1>
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
@@ -51,8 +59,7 @@ export default function ShowHero() {
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="text-sm md:text-lg text-[#d1c5ac] font-light font-hanken max-w-2xl mx-auto leading-relaxed"
         >
-          Discover our comprehensive architectural capabilities and immerse
-          yourself in our curated interior styles and material palettes.
+          {hero.desc}
         </motion.p>
       </div>
     </section>

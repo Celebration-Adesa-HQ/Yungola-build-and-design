@@ -72,7 +72,7 @@ export default function FeaturedProjects() {
         <p className="text-accent text-sm tracking-[0.2em] uppercase font-semibold mb-2 font-montserrat">
           Selected Works
         </p>
-        <h2 className="text-4xl md:text-5xl font-bold uppercase tracking-wide text-darkForeground font-oswald">
+        <h2 className="text-4xl md:text-5xl font-bold uppercase tracking-wide text-darkForeground font-montserrat">
           Featured Projects
         </h2>
       </div>
@@ -152,7 +152,7 @@ export default function FeaturedProjects() {
                 <span className="text-xs tracking-[0.2em] text-accent group-hover:text-on-primary uppercase mb-3 block transition-colors">
                   {project.category}
                 </span>
-                <h3 className="text-xl font-bold uppercase tracking-wider mb-6 text-darkForeground group-hover:text-on-primary transition-colors font-oswald">
+                <h3 className="text-xl font-bold uppercase tracking-wider mb-6 text-darkForeground group-hover:text-on-primary transition-colors font-montserrat">
                   {project.title}
                 </h3>
                 <Link

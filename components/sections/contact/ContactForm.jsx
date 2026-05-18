@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import { Send, CheckCircle } from "lucide-react";
+import { contactContent } from "@/lib/data/siteContent";
 
 export default function ContactForm() {
+  const { portal } = contactContent;
   const [form, setForm] = useState({ name: "", email: "", phone: "", subject: "", message: "" });
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
@@ -30,20 +32,20 @@ export default function ContactForm() {
   return (
     <div className="lg:col-span-7 bg-surface-container p-8 md:p-12 lg:p-16 shadow-2xl border-t-2 border-accent relative z-10 rounded-sm border border-outline-variant">
       <span className="text-accent text-xs font-bold tracking-[0.2em] uppercase block mb-4 font-montserrat">
-        Inquiry Portal
+        {portal.badge}
       </span>
-      <h2 className="text-3xl md:text-4xl font-bold uppercase text-darkForeground mb-10 font-oswald tracking-wide">
-        Send a Direct Message
+      <h2 className="text-3xl md:text-4xl font-bold uppercase text-darkForeground mb-10 font-montserrat tracking-wide">
+        {portal.title}
       </h2>
 
       {submitted ? (
         <div className="bg-darkBackground rounded-sm p-12 text-center border border-outline-variant shadow-inner animate-fade-up">
           <CheckCircle size={56} className="text-accent mx-auto mb-6" />
-          <h3 className="text-2xl text-darkForeground font-bold uppercase font-oswald tracking-wide mb-3">
-            Inquiry Received
+          <h3 className="text-2xl text-darkForeground font-bold uppercase font-montserrat tracking-wide mb-3">
+            {portal.successHeading}
           </h3>
           <p className="text-darkSecondaryForeground font-hanken text-base max-w-md mx-auto leading-relaxed mb-8">
-            Thank you for contacting Yungola Build and Design. One of our principal architects will review your project requirements and contact you within 24 business hours.
+            {portal.successMsg}
           </p>
           <button
             onClick={() => {

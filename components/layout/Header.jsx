@@ -6,29 +6,8 @@ import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
 import Image from "next/image";
 
-const navLinks = [
-  { href: "/", label: "HOME" },
-  { href: "/about", label: "ABOUT" },
-  {
-    href: "/showroom",
-    label: "SERVICES",
-    hasDropdown: true,
-    dropdownItems: [
-      { href: "/gallery#architecture", label: "ARCHITECTURAL DESIGN" },
-      { href: "/gallery#interior", label: "INTERIOR DESIGN" },
-      { href: "/gallery#exterior", label: "EXTERIOR DESIGN" },
-      { href: "/gallery#furniture", label: "FURNITURE DESIGN" },
-      { href: "/gallery#decor", label: "DECOR PLAN" },
-      { href: "/gallery#modelling", label: "3D MODELLING" },
-    ],
-  },
-  {
-    href: "/gallery",
-    label: "PROJECTS",
-    hasDropdown: false,
-  },
-  { href: "/contact", label: "CONTACT" },
-];
+import { navigation } from "@/lib/data/siteContent";
+const navLinks = navigation.navLinks;
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -49,7 +28,9 @@ export default function Header() {
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileOpen]);
 
   return (
@@ -76,7 +57,7 @@ export default function Header() {
             className="w-10 h-10 md:w-12 md:h-12 object-contain transition-transform duration-300 group-hover:scale-105"
           />
           <div className="flex flex-col leading-tight">
-            <h1 className="font-montserrat text-xl md:text-2xl font-bold tracking-widest text-darkForeground uppercase group-hover:text-accent transition-colors duration-300">
+            <h1 className="font-montserrat text-xl md:text-2xl font-bold tracking-widest text-accent uppercase group-hover:text-accent transition-colors duration-300">
               YUNGOLA
             </h1>
             <span className="font-hanken text-[10px] tracking-widest text-darkSecondaryForeground uppercase">

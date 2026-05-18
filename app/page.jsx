@@ -1,8 +1,8 @@
-import Hero from "@/components/sections/Hero";
-import About from "@/components/sections/About";
-import ServicesOverview from "@/components/sections/ServicesOverview";
-import FeaturedProjects from "@/components/sections/FeaturedProjects";
-import Testimonials from "@/components/sections/Testimonials";
+import Hero from "@/components/sections/home/Hero";
+import About from "@/components/sections/home/About";
+import ServicesOverview from "@/components/sections/home/ServicesOverview";
+import FeaturedProjects from "@/components/sections/home/FeaturedProjects";
+import Testimonials from "@/components/sections/home/Testimonials";
 
 export const metadata = {
   title: "YUNGOLA | Cinematic Architectural Design",
@@ -11,7 +11,7 @@ export const metadata = {
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col w-full bg-darkBackground min-h-screen">
+    <div className="flex flex-col w-full bg-surface-container min-h-screen">
       <Hero />
       <About />
       <ServicesOverview />

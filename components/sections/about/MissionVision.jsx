@@ -1,35 +1,38 @@
 import React from "react";
 import Image from "next/image";
+import { aboutContent } from "@/lib/data/siteContent";
 
 export default function MissionVision() {
+  const { foundation } = aboutContent;
+
   return (
     <section className="py-24 px-6 lg:px-12 max-w-7xl mx-auto border-x border-outline-variant">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         {/* Left side: Overlapping Dark Card */}
         <div className="lg:col-span-7 bg-surface-container p-8 md:p-12 lg:p-16 shadow-2xl border-t-2 border-accent relative z-10 rounded-sm">
           <span className="text-accent text-xs font-bold tracking-[0.2em] uppercase block mb-4 font-montserrat">
-            Our Foundation
+            {foundation.badge}
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold uppercase text-darkForeground mb-10 font-oswald tracking-wide">
-            Mission & Vision
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold uppercase text-darkForeground mb-10 font-montserrat tracking-wide">
+            {foundation.title}
           </h2>
 
           <div className="space-y-10">
             <div className="border-l-4 border-outline pl-6 py-1 bg-surface-container-high p-4 rounded-r-sm shadow-inner">
-              <h3 className="text-lg font-bold text-darkForeground uppercase tracking-wider mb-3 font-oswald">
-                Our Mission
+              <h3 className="text-lg font-bold text-darkForeground uppercase tracking-wider mb-3 font-montserrat">
+                {foundation.mission.title}
               </h3>
               <p className="text-sm md:text-base text-on-surface-variant leading-relaxed font-hanken">
-                To design and build exceptional spaces that reflect our clients' highest aspirations — combining architectural precision, elite material curation, and uncompromising quality at every stage of master construction.
+                {foundation.mission.desc}
               </p>
             </div>
 
             <div className="border-l-4 border-accent pl-6 py-1 bg-surface-container-high p-4 rounded-r-sm shadow-inner">
-              <h3 className="text-lg font-bold text-darkForeground uppercase tracking-wider mb-3 font-oswald">
-                Our Vision
+              <h3 className="text-lg font-bold text-darkForeground uppercase tracking-wider mb-3 font-montserrat">
+                {foundation.vision.title}
               </h3>
               <p className="text-sm md:text-base text-on-surface-variant leading-relaxed font-hanken">
-                To be Africa's most trusted premium design-build studio — known for transforming the built landscape of Nigeria with bold, sustainable, and cinematic architecture that feels like a digital showroom.
+                {foundation.vision.desc}
               </p>
             </div>
           </div>
@@ -38,7 +41,7 @@ export default function MissionVision() {
         {/* Right side: Architectural/Team Imagery */}
         <div className="lg:col-span-5 relative h-[450px] md:h-[550px] w-full rounded-sm overflow-hidden shadow-2xl border border-outline-variant group">
           <Image
-            src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80"
+            src={foundation.image}
             alt="Yungola Build and Design team at work"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"

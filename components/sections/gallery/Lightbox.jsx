@@ -91,7 +91,7 @@ export default function Lightbox({ items, index, onClose, onPrev, onNext }) {
             <span className="text-[10px] text-accent uppercase tracking-[0.2em] font-montserrat font-bold">
               {item.type}
             </span>
-            <h3 className="text-2xl text-darkForeground mt-1 font-oswald font-bold uppercase tracking-wide">
+            <h3 className="text-2xl text-darkForeground mt-1 font-montserrat font-bold uppercase tracking-wide">
               {item.title}
             </h3>
             <p className="text-sm text-darkSecondaryForeground mt-1 font-hanken max-w-2xl">

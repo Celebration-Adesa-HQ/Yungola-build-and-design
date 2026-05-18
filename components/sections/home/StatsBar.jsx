@@ -2,12 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const stats = [
-  { value: 50, suffix: "+", label: "Projects Completed" },
-  { value: 10, suffix: "+", label: "Years Experience" },
-  { value: 100, suffix: "%", label: "Client Satisfaction" },
-  { value: 25, suffix: "+", label: "Expert Team Members" },
-];
+import { homeContent } from "@/lib/data/siteContent";
+const stats = homeContent.stats;
 
 function CountUp({ target, suffix, active }) {
   const [count, setCount] = useState(0);

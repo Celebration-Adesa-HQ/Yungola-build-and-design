@@ -97,7 +97,7 @@ export default function GalleryProjects() {
                 >
                   {project.type}
                 </p>
-                <h3 className="text-xl md:text-2xl font-bold uppercase mb-6 tracking-wide font-oswald">
+                <h3 className="text-xl md:text-2xl font-bold uppercase mb-6 tracking-wide font-montserrat">
                   {project.title}
                 </h3>
                 <span

@@ -3,10 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { homeContent } from "@/lib/data/siteContent";
 
 export default function ShowroomTeaser() {
   const [visible, setVisible] = useState(false);
   const ref = useRef(null);
+  const { showroomTeaser } = homeContent;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -45,25 +47,30 @@ export default function ShowroomTeaser() {
         <p
           className="text-xs text-accent uppercase tracking-[0.25em] mb-4 font-montserrat font-bold"
         >
-          Virtual Experience
+          {showroomTeaser.badge}
         </p>
         <h2
           id="showroom-heading"
-          className="text-4xl lg:text-7xl font-bold text-darkForeground mb-6 leading-tight font-oswald uppercase tracking-wide"
+          className="text-4xl lg:text-7xl font-bold text-darkForeground mb-6 leading-tight font-montserrat uppercase tracking-wide"
         >
-          Visit Our <span className="text-accent">Showroom</span>
+          {showroomTeaser.title.split(" ").map((word, i, arr) => (
+            <span key={word}>
+              {word === "Showroom" ? <span className="text-accent">{word}</span> : word}
+              {i < arr.length - 1 ? " " : ""}
+            </span>
+          ))}
         </h2>
         <p
           className="text-lg text-on-surface-variant mb-10 leading-relaxed font-hanken font-light"
         >
-          See designs up close. Explore material choices, interior styles, and completed room setups that will inspire your next build.
+          {showroomTeaser.desc}
         </p>
         <Link
-          href="/showroom"
+          href={showroomTeaser.ctaLink}
           id="showroom-teaser-btn"
           className="group inline-flex items-center gap-3 px-10 py-4 bg-accent text-on-primary text-sm font-bold uppercase tracking-[0.12em] rounded-sm hover:bg-accentDark transition-all duration-200 cursor-pointer shadow-[0_4px_32px_rgba(245,196,0,0.35)] font-montserrat"
         >
-          Explore Showroom
+          {showroomTeaser.ctaLabel}
           <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />
         </Link>
       </div>

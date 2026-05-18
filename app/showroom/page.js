@@ -14,7 +14,7 @@ export const metadata = {
 
 export default function ShowroomPage() {
   return (
-    <div className="bg-darkBackground text-darkForeground min-h-screen pt-24 font-montserrat antialiased">
+    <div className="bg-surface-container text-darkForeground min-h-screen pt-24 font-montserrat antialiased">
       {/* Page Header */}
       <ShowHero />
 
