@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function GalleryPage() {
   return (
-    <main className="bg-surface-container text-darkForeground min-h-screen font-montserrat antialiased">
+    <main className="bg-surface-bright/40 text-darkForeground min-h-screen font-montserrat antialiased">
       {/* Projects Section */}
       <section
         className="py-24 relative overflow-hidden"

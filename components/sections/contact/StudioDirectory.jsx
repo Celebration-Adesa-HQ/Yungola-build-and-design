@@ -1,3 +1,7 @@
+"use client";
+
+import React from "react";
+import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Clock, MessageSquare } from "lucide-react";
 import { contactContent } from "@/lib/data/siteContent";
 
@@ -6,23 +10,73 @@ const icons = [MapPin, Phone, Mail, Clock];
 export default function StudioDirectory() {
   const { directory } = contactContent;
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: 30 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
+  };
+
+  const mapVariants = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 1,
+        ease: [0.16, 1, 0.3, 1],
+        delay: 0.3,
+      },
+    },
+  };
+
   return (
     <div className="lg:col-span-5 space-y-12">
-      <div>
-        <span className="text-accent text-xs font-bold tracking-[0.2em] uppercase block mb-3 font-montserrat">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <motion.span
+          variants={itemVariants}
+          className="text-accent text-xs font-bold tracking-[0.2em] uppercase block mb-3 font-montserrat"
+        >
           {directory.badge}
-        </span>
-        <h2 className="text-3xl font-bold uppercase text-darkForeground mb-8 font-montserrat tracking-wide border-b border-outline-variant pb-4">
+        </motion.span>
+        <motion.h2
+          variants={itemVariants}
+          className="text-3xl font-bold uppercase text-darkForeground mb-8 font-montserrat tracking-wide border-b border-outline-variant pb-4"
+        >
           {directory.title}
-        </h2>
+        </motion.h2>
 
         <div className="space-y-8">
           {directory.list.map(({ label, value, href }, index) => {
             const Icon = icons[index] || MapPin;
             return (
-              <div key={label} className="flex items-start gap-5 group">
+              <motion.div
+                key={label}
+                variants={itemVariants}
+                className="flex items-start gap-5 group"
+              >
                 <div className="w-12 h-12 bg-surface-container rounded-sm flex items-center justify-center flex-shrink-0 border border-outline-variant group-hover:border-accent transition-colors shadow-lg">
-                  <Icon size={20} className="text-accent group-hover:scale-110 transition-transform duration-300" aria-hidden="true" />
+                  <Icon size={20} className="text-accent group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300" aria-hidden="true" />
                 </div>
                 <div>
                   <p className="text-[11px] text-accent uppercase tracking-[0.15em] mb-1 font-montserrat font-bold">
@@ -38,14 +92,20 @@ export default function StudioDirectory() {
                     </p>
                   )}
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
-      </div>
+      </motion.div>
 
-      {/* Google Map Embed */}
-      <div className="relative h-72 rounded-sm overflow-hidden bg-surface-container border border-outline-variant shadow-2xl group">
+      {/* Google Map Embed with entrance animation */}
+      <motion.div
+        variants={mapVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="relative h-72 rounded-sm overflow-hidden bg-surface-container border border-outline-variant shadow-2xl group cursor-pointer"
+      >
         <iframe
           title="Yungola Build and Design Location"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d253682.63739698!2d3.1585992!3d6.548055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b2ae68280c1%3A0xdc9e87a367c3d9cb!2sLagos%2C%20Nigeria!5e0!3m2!1sen!2sus!4v1"
@@ -62,10 +122,16 @@ export default function StudioDirectory() {
             Lagos Studio
           </span>
         </div>
-      </div>
+      </motion.div>
 
       {/* Direct Social Triggers */}
-      <div className="space-y-4 pt-4 border-t border-outline-variant">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+        className="space-y-4 pt-4 border-t border-outline-variant"
+      >
         <span className="text-accent text-[11px] font-bold tracking-[0.2em] uppercase block mb-3 font-montserrat">
           Instant Communication
         </span>
@@ -75,7 +141,7 @@ export default function StudioDirectory() {
             target="_blank"
             rel="noopener noreferrer"
             id="contact-whatsapp-btn"
-            className="flex-1 flex items-center justify-center gap-3 py-4 bg-[#25D366] text-[#1f2226] text-xs font-bold uppercase tracking-[0.15em] rounded-sm hover:bg-[#20bc5a] transition-all duration-300 shadow-lg cursor-pointer font-montserrat hover:translate-y-[-2px]"
+            className="flex-1 flex items-center justify-center gap-3 py-4 bg-[#25D366] text-[#1f2226] text-xs font-bold uppercase tracking-[0.15em] rounded-sm hover:bg-[#20bc5a] hover:text-white transition-all duration-300 shadow-lg cursor-pointer font-montserrat hover:translate-y-[-2px]"
           >
             <MessageSquare size={18} /> {directory.whatsappLabel}
           </a>
@@ -89,7 +155,7 @@ export default function StudioDirectory() {
             {directory.instagramLabel}
           </a>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

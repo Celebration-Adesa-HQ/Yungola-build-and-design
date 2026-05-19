@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 import { aboutContent } from "@/lib/data/siteContent";
 
@@ -6,13 +5,19 @@ export default function LeadershipTeam() {
   const { team } = aboutContent;
 
   return (
-    <section className="py-24 bg-darkBackground border-t border-outline-variant" aria-labelledby="team-heading">
+    <section
+      className="py-24 bg-darkBackground border-t border-outline-variant"
+      aria-labelledby="team-heading"
+    >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <p className="text-xs text-darkSecondaryForeground uppercase tracking-[0.2em] mb-3 font-montserrat font-bold">
             {team.badge}
           </p>
-          <h2 id="team-heading" className="text-3xl md:text-5xl font-bold uppercase text-darkForeground mb-6 font-montserrat tracking-wide">
+          <h2
+            id="team-heading"
+            className="text-3xl md:text-5xl font-bold uppercase text-darkForeground mb-6 font-montserrat tracking-wide"
+          >
             {team.title}
           </h2>
           <p className="text-sm md:text-base text-on-surface-variant font-hanken leading-relaxed">
@@ -56,7 +61,8 @@ export default function LeadershipTeam() {
                 </div>
                 <div className="mt-6 pt-6 border-t border-outline-variant/30">
                   <span className="text-[11px] text-darkSecondaryForeground uppercase tracking-widest font-montserrat font-bold hover:text-darkForeground transition-colors cursor-pointer inline-flex items-center">
-                    Connect on LinkedIn <span className="ml-2 text-base leading-none">→</span>
+                    Connect on LinkedIn{" "}
+                    <span className="ml-2 text-base leading-none">→</span>
                   </span>
                 </div>
               </div>

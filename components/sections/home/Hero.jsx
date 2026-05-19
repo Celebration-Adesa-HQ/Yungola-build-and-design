@@ -34,7 +34,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-black">
+    <section className="relative w-full h-screen overflow-hidden bg-[#131313]">
       {/* Background Slides */}
       {slides.map((slide, index) => (
         <div
@@ -66,25 +66,25 @@ export default function Hero() {
           if (index !== current) return null;
 
           return (
-            <div key={slide.id} className="flex flex-col items-center">
-              <h2 className="uppercase tracking-widest text-sm md:text-base font-semibold mb-4 text-white/70 font-montserrat animate-fade-up">
+            <div key={slide.id} className="flex flex-col items-center max-w-4xl mx-auto">
+              <h2 className="uppercase tracking-[0.25em] text-xs md:text-sm font-bold mb-4 text-accent font-montserrat animate-fade-up">
                 {slide.subHeadline}
               </h2>
 
-              <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold uppercase tracking-tight mb-8 leading-none text-white font-montserrat animate-fade-up">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold uppercase tracking-wider mb-8 leading-tight text-white font-montserrat animate-fade-up">
                 {slide.headline}
               </h1>
 
               <Link
                 href={slide.link}
-                className="bg-[#ffe08b] text-[#131313] px-8 py-4 uppercase tracking-[0.2em] text-sm font-semibold flex items-center gap-3 rounded-sm shadow-lg hover:bg-[#ffe08b]/90 transition"
+                className="group bg-accent text-foreground hover:bg-accent/80 px-8 py-4 uppercase tracking-[0.2em] text-xs font-bold flex items-center gap-3 rounded-sm shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
               >
                 See Project
                 <svg
-                  className="h-5 w-5"
+                  className="h-4 w-4 transform group-hover:translate-x-1 transition-transform duration-300"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth="2"
+                  strokeWidth="2.5"
                   viewBox="0 0 24 24"
                 >
                   <path
@@ -102,13 +102,15 @@ export default function Hero() {
       {/* Controls */}
       <button
         onClick={handlePrev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 text-white/50 hover:text-white p-4"
+        className="absolute left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-[#ffe08b]/20 bg-[#131313]/60 text-[#ffe08b] hover:bg-[#ffe08b] hover:text-[#131313] flex items-center justify-center transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-[#ffe08b] cursor-pointer"
+        aria-label="Previous slide"
       >
         <svg
-          className="h-10 w-10"
+          className="h-6 w-6"
           fill="none"
           stroke="currentColor"
-          strokeWidth="1"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
         >
           <path
             d="M15 19l-7-7 7-7"
@@ -120,15 +122,21 @@ export default function Hero() {
 
       <button
         onClick={handleNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 text-white/50 hover:text-white p-4"
+        className="absolute right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-[#ffe08b]/20 bg-[#131313]/60 text-[#ffe08b] hover:bg-[#ffe08b] hover:text-[#131313] flex items-center justify-center transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-[#ffe08b] cursor-pointer"
+        aria-label="Next slide"
       >
         <svg
-          className="h-10 w-10"
+          className="h-6 w-6"
           fill="none"
           stroke="currentColor"
-          strokeWidth="1"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
         >
-          <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+          <path
+            d="M9 5l7 7-7 7"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </svg>
       </button>
 
@@ -138,9 +146,10 @@ export default function Hero() {
           <button
             key={i}
             onClick={() => setCurrent(i)}
-            className={`h-1 transition-all duration-300 ${
-              current === i ? "w-10 bg-[#ffe08b]" : "w-6 bg-white/30"
+            className={`h-1.5 transition-all duration-500 cursor-pointer rounded-full ${
+              current === i ? "w-12 bg-accent" : "w-6 bg-accent/20 hover:bg-accent/40"
             }`}
+            aria-label={`Go to slide ${i + 1}`}
           />
         ))}
       </div>

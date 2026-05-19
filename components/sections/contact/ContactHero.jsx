@@ -2,10 +2,10 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { aboutContent } from "@/lib/data/siteContent";
+import { contactContent } from "@/lib/data/siteContent";
 
-export default function AboutHero() {
-  const { hero } = aboutContent;
+export default function ContactHero() {
+  const { hero } = contactContent;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -25,7 +25,7 @@ export default function AboutHero() {
       y: 0,
       transition: {
         duration: 0.8,
-        ease: [0.16, 1, 0.3, 1], // Custom premium easeOutExpo curve
+        ease: [0.16, 1, 0.3, 1], // Premium easeOutExpo curve
       },
     },
   };
@@ -43,7 +43,7 @@ export default function AboutHero() {
   };
 
   return (
-    <section className="relative min-h-[60vh] flex items-center overflow-hidden border-b border-outline-variant bg-[#131313]">
+    <section className="relative min-h-[50vh] flex items-center overflow-hidden border-b border-outline-variant bg-[#131313]">
       {/* Background Grid Lines */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -52,7 +52,7 @@ export default function AboutHero() {
         className="absolute inset-0 pointer-events-none z-0"
         style={{
           backgroundImage:
-            "linear-gradient(to right, var(--color-outline-variant, #514532) 1px, transparent 1px)",
+            "linear-gradient(to right, var(--color-surface-container) 1px, transparent 1px)",
           backgroundSize: "25% 100%",
         }}
       />
@@ -63,16 +63,14 @@ export default function AboutHero() {
         initial="hidden"
         animate="visible"
         className="absolute inset-0 bg-cover bg-center z-0"
-        style={{
-          backgroundImage: `url('${hero.bgImage}')`,
-        }}
+        style={{ backgroundImage: `url('${hero.bgImage}')` }}
         role="img"
         aria-label="Company building exterior"
       />
 
-      {/* Premium Dark Gradient Overlay */}
+      {/* Dark Overlay */}
       <div
-        className="absolute inset-0 bg-gradient-to-r from-[#131313]/95 via-[#131313]/80 to-[#131313]/55 z-10"
+        className="absolute inset-0 bg-gradient-to-r from-[#131313]/95 via-[#131313]/70 to-[#131313]/40 z-10"
         aria-hidden="true"
       />
 
@@ -81,7 +79,7 @@ export default function AboutHero() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-20 max-w-7xl mx-auto px-6 lg:px-12 pt-20 pb-20 w-full"
+        className="relative z-20 max-w-7xl mx-auto px-6 lg:px-12 pt-16 pb-16 w-full"
       >
         <motion.p
           variants={itemVariants}
@@ -99,7 +97,7 @@ export default function AboutHero() {
         
         <motion.p
           variants={itemVariants}
-          className="text-base md:text-lg text-on-surface-variant max-w-3xl leading-relaxed font-hanken font-light"
+          className="text-base md:text-lg text-darkSecondaryForeground max-w-3xl leading-relaxed font-hanken font-light"
         >
           {hero.desc}
         </motion.p>

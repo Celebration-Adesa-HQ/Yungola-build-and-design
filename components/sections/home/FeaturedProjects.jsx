@@ -10,7 +10,7 @@ const projects = projectsData.slice(0, 4).map(p => ({
   title: p.title,
   category: p.type,
   image: p.image,
-  href: "/gallery",
+  href: `/projects/${p.id}`,
 }));
 
 export default function FeaturedProjects() {

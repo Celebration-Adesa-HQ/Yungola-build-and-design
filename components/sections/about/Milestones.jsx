@@ -1,17 +1,22 @@
-import React from "react";
 import { aboutContent } from "@/lib/data/siteContent";
 
 export default function Milestones() {
   const { milestones } = aboutContent;
 
   return (
-    <section className="py-24 bg-surface-container-lowest border-t border-outline-variant" aria-labelledby="timeline-heading">
+    <section
+      className="py-24 bg-surface-container-lowest border-t border-outline-variant"
+      aria-labelledby="timeline-heading"
+    >
       <div className="max-w-4xl mx-auto px-6 lg:px-12">
         <div className="text-center mb-20">
           <p className="text-xs text-darkSecondaryForeground uppercase tracking-[0.2em] mb-3 font-montserrat font-bold">
             {milestones.badge}
           </p>
-          <h2 id="timeline-heading" className="text-3xl md:text-5xl font-bold uppercase text-darkForeground mb-6 font-montserrat tracking-wide">
+          <h2
+            id="timeline-heading"
+            className="text-3xl md:text-5xl font-bold uppercase text-darkForeground mb-6 font-montserrat tracking-wide"
+          >
             {milestones.title}
           </h2>
           <p className="text-sm md:text-base text-on-surface-variant font-hanken leading-relaxed">

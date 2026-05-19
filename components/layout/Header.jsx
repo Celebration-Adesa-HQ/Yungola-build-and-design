@@ -38,7 +38,7 @@ export default function Header() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 flex justify-between items-center px-6 md:px-12 py-6 ${
           scrolled
-            ? "bg-darkBackground/95 backdrop-blur-md border-b border-outline-variant/30 shadow-lg"
+            ? "bg-foreground/95 backdrop-blur-md border-b border-outline-variant/30 shadow-lg"
             : "bg-transparent"
         } animate-fade-up`}
       >
@@ -124,7 +124,7 @@ export default function Header() {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-darkBackground flex flex-col transition-all duration-500 md:hidden ${
+        className={`fixed inset-0 z-40 bg-surface-container flex flex-col transition-all duration-500 md:hidden ${
           mobileOpen
             ? "opacity-100 translate-y-0"
             : "opacity-0 -translate-y-full pointer-events-none"
