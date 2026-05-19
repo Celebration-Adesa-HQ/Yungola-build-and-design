@@ -36,6 +36,7 @@ const oswald = Oswald({
 });
 
 export const metadata = {
+  metadataBase: new URL("https://www.yungolabuildanddesign.com"),
   title: {
     default: "Yungola Build and Design | Architecture, Construction & Design",
     template: "%s | Yungola Build and Design",
@@ -74,11 +75,42 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ArchitectureFirm",
+    name: "Yungola Build and Design",
+    url: "https://www.yungolabuildanddesign.com",
+    logo: "https://www.yungolabuildanddesign.com/logo.png",
+    image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1920&q=80",
+    description: "Premium architecture, design and construction company transforming ideas into built realities. From concept drawings to completed homes and commercial spaces across Nigeria.",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Lekki Phase 1",
+      addressLocality: "Lagos",
+      addressCountry: "NG"
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+2348000000000",
+      contactType: "customer service"
+    },
+    sameAs: [
+      "https://instagram.com",
+      "https://linkedin.com"
+    ]
+  };
+
   return (
     <html
       lang="en"
       className={`${hankenGrotesk.variable} ${josefinSans.variable} ${montserrat.variable} ${oswald.variable} h-full antialiased dark`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-darkBackground text-darkForeground font-body-md overflow-x-hidden">
         <Header />
         <main className="flex-1">{children}</main>

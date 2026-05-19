@@ -32,7 +32,7 @@ export default function ShowroomPage() {
       </div>
 
       {/* Optional: Subtle bottom accent bar */}
-      <div className="h-1 bg-gradient-to-r from-accent via-secondary to-tertiary" />
+      <div className="h-1 bg-linear-to-r from-accent via-secondary to-tertiary" />
     </div>
   );
 }
