@@ -1,4 +1,4 @@
-import { projectsData } from "@/lib/data/projects";
+import { showroomContent } from "@/lib/data/siteContent";
 
 export default function sitemap() {
   const baseUrl = "https://www.yungolabuildanddesign.com";
@@ -17,13 +17,13 @@ export default function sitemap() {
     priority: route === "" ? 1 : route === "/gallery" ? 0.9 : 0.8,
   }));
 
-  // Dynamic portfolio project routes automatically scaled from data
-  const projectRoutes = projectsData.map((project) => ({
-    url: `${baseUrl}/projects/${project.id}`,
+  // Dynamic gallery category routes
+  const galleryRoutes = showroomContent.servicesGrid.map((service) => ({
+    url: `${baseUrl}/gallery/${service.id}`,
     lastModified: new Date().toISOString(),
     changeFrequency: "monthly",
     priority: 0.7,
   }));
 
-  return [...routes, ...projectRoutes];
+  return [...routes, ...galleryRoutes];
 }
