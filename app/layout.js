@@ -85,13 +85,13 @@ export default function RootLayout({ children }) {
     description: "Premium architecture, design and construction company transforming ideas into built realities. From concept drawings to completed homes and commercial spaces across Nigeria.",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Lekki Phase 1",
-      addressLocality: "Lagos",
+      streetAddress: "5, Ayanleye Street, Ogba",
+      addressLocality: "Lagos State",
       addressCountry: "NG"
     },
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+2348000000000",
+      telephone: "+2349071518988",
       contactType: "customer service"
     },
     sameAs: [

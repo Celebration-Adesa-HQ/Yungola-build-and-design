@@ -137,7 +137,7 @@ export default function StudioDirectory() {
         </span>
         <div className="flex flex-col sm:flex-row gap-4">
           <a
-            href="https://wa.me/2348000000000"
+            href="https://wa.me/23480541708584"
             target="_blank"
             rel="noopener noreferrer"
             id="contact-whatsapp-btn"

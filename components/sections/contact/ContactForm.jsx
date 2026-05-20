@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, CheckCircle } from "lucide-react";
+import { Send, CheckCircle, Loader2 } from "lucide-react";
 import { contactContent } from "@/lib/data/siteContent";
 
 export default function ContactForm() {
@@ -10,6 +10,8 @@ export default function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", subject: "", message: "" });
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [serverError, setServerError] = useState("");
 
   const update = (f, v) => {
     setForm((p) => ({ ...p, [f]: v }));
@@ -25,9 +27,34 @@ export default function ContactForm() {
     return Object.keys(e).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validate()) setSubmitted(true);
+    setServerError("");
+    
+    if (validate()) {
+      setIsSubmitting(true);
+      try {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(form),
+        });
+        
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          setSubmitted(true);
+        } else {
+          setServerError(result.error || "Something went wrong. Please try again.");
+        }
+      } catch (error) {
+        setServerError("A network error occurred. Please try again later.");
+      } finally {
+        setIsSubmitting(false);
+      }
+    }
   };
 
   const containerVariants = {
@@ -109,6 +136,15 @@ export default function ContactForm() {
             className="space-y-8"
             noValidate
           >
+            {serverError && (
+              <motion.div 
+                initial={{ opacity: 0, y: -10 }} 
+                animate={{ opacity: 1, y: 0 }} 
+                className="bg-red-500/10 border border-red-500/50 rounded-sm p-4 text-red-400 text-sm font-hanken"
+              >
+                {serverError}
+              </motion.div>
+            )}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <motion.div variants={fieldVariants} initial="hidden" animate="visible" custom={0}>
                 <label htmlFor="c-name" className="block text-xs text-accent uppercase tracking-[0.15em] mb-2 font-montserrat font-bold">
@@ -190,10 +226,20 @@ export default function ContactForm() {
               <button
                 type="submit"
                 id="contact-submit-btn"
-                className="group flex items-center justify-center gap-3 px-10 py-5 bg-accent text-[#131313] hover:bg-white hover:text-black text-xs font-bold uppercase tracking-[0.2em] rounded-sm transition-all duration-300 shadow-xl cursor-pointer font-montserrat hover:-translate-y-0.5"
+                disabled={isSubmitting}
+                className="group flex items-center justify-center gap-3 px-10 py-5 bg-accent text-[#131313] hover:bg-white hover:text-black text-xs font-bold uppercase tracking-[0.2em] rounded-sm transition-all duration-300 shadow-xl cursor-pointer font-montserrat hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0"
               >
-                Send Inquiry
-                <Send size={14} className="group-hover:translate-x-1.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                {isSubmitting ? (
+                  <>
+                    Sending...
+                    <Loader2 size={14} className="animate-spin" />
+                  </>
+                ) : (
+                  <>
+                    Send Inquiry
+                    <Send size={14} className="group-hover:translate-x-1.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                  </>
+                )}
               </button>
             </motion.div>
           </motion.form>

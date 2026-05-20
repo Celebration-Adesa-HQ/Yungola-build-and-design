@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export default function WhatsAppFloat() {
   const [isOpen, setIsOpen] = useState(false);
-  const phone = "2348000000000";
+  const phone = "23480541708584";
   const defaultMessage = encodeURIComponent(
     "Hello Yungola Build and Design! I'd like to inquire about your services."
   );

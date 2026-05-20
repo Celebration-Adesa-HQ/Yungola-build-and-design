@@ -24,7 +24,7 @@ export default function GalleryViewer({ categoryTitle, images, pdfs }) {
     setNumPages(prev => ({ ...prev, [pdfId]: numPages }));
   };
 
-  const slides = images.map(img => ({ src: img }));
+  const slides = images.map(img => ({ src: typeof img === 'string' ? img : img.src }));
 
   return (
     <div className="container mx-auto px-6 lg:px-12 max-w-7xl pb-24">
@@ -73,7 +73,12 @@ export default function GalleryViewer({ categoryTitle, images, pdfs }) {
             transition={{ duration: 0.5 }}
             className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6"
           >
-            {images.map((src, idx) => (
+            {images.map((img, idx) => {
+              const src = typeof img === 'string' ? img : img.src;
+              const width = typeof img === 'string' ? 800 : (img.width || 800);
+              const height = typeof img === 'string' ? 800 : (img.height || 800);
+
+              return (
               <div
                 key={src}
                 className="relative break-inside-avoid group overflow-hidden rounded-sm border border-outline-variant cursor-zoom-in shadow-xl"
@@ -83,8 +88,8 @@ export default function GalleryViewer({ categoryTitle, images, pdfs }) {
                   <Image
                     src={src}
                     alt={`Gallery item ${idx + 1}`}
-                    width={0}
-                    height={0}
+                    width={width}
+                    height={height}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
@@ -99,7 +104,7 @@ export default function GalleryViewer({ categoryTitle, images, pdfs }) {
                   </div>
                 </div>
               </div>
-            ))}
+            )})}
           </motion.div>
         )}
 

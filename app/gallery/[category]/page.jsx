@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import { notFound } from "next/navigation";
 import GalleryViewer from "@/components/sections/gallery/GalleryViewer";
+import { getDynamicCategories, getMediaWithDimensions, splitByOrientation } from "@/lib/media/getMediaWithDimensions";
 
 export const metadata = {
   title: "Category Gallery | YUNGOLA",
@@ -10,7 +11,6 @@ export const metadata = {
 
 export default async function CategoryGalleryPage({ params }) {
   const { category } = await params;
-  const { getDynamicCategories } = require("@/lib/media/getMediaWithDimensions");
   const dynamicCategories = getDynamicCategories();
   const currentCategory = dynamicCategories.find(c => c.id === category);
 
@@ -23,8 +23,7 @@ export default async function CategoryGalleryPage({ params }) {
   const pdfs = [];
 
   try {
-    const { getMediaWithDimensions, splitByOrientation } = require("@/lib/media/getMediaWithDimensions");
-    const media = getMediaWithDimensions(category);
+    const media = await getMediaWithDimensions(category);
     const split = splitByOrientation(media);
     
     // For Masonry grids and gallery cards, prioritize portrait and square.
