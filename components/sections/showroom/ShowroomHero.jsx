@@ -11,7 +11,7 @@ export default function ShowroomHero() {
   return (
     <div className="relative mb-24 lg:mb-32">
       {/* Background Image */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, scale: 1.05 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
@@ -30,7 +30,7 @@ export default function ShowroomHero() {
       </motion.div>
 
       {/* Overlapping Content Card */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, x: -30 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
@@ -54,8 +54,19 @@ export default function ShowroomHero() {
           className="group inline-flex items-center bg-[#ffe08b] hover:bg-white text-black text-xs font-bold tracking-[0.15em] uppercase px-8 py-4 transition-all duration-300"
         >
           {spatial.ctaLabel}
-          <svg className="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          <svg
+            className="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="square"
+              strokeLinejoin="miter"
+              strokeWidth="2"
+              d="M17 8l4 4m0 0l-4 4m4-4H3"
+            ></path>
           </svg>
         </Link>
       </motion.div>

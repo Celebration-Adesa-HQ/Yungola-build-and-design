@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
 import { showroomContent } from "@/lib/data/siteContent";
 
@@ -40,7 +39,7 @@ export default function ShowHero() {
 
       {/* Content Layer */}
       <div className="relative z-20 text-center py-20 px-6 max-w-4xl mx-auto flex flex-col items-center justify-center mt-12 md:mt-16">
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -48,12 +47,16 @@ export default function ShowHero() {
         >
           {hero.title.split(" ").map((word, i, arr) => (
             <span key={word}>
-              {word === "&" ? <span className="text-[#ffe08b]">{word}</span> : word}
+              {word === "&" ? (
+                <span className="text-[#ffe08b]">{word}</span>
+              ) : (
+                word
+              )}
               {i < arr.length - 1 ? " " : ""}
             </span>
           ))}
         </motion.h1>
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}

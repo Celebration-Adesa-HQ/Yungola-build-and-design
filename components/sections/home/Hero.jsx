@@ -66,7 +66,10 @@ export default function Hero() {
           if (index !== current) return null;
 
           return (
-            <div key={slide.id} className="flex flex-col items-center max-w-4xl mx-auto">
+            <div
+              key={slide.id}
+              className="flex flex-col items-center max-w-4xl mx-auto"
+            >
               <h2 className="uppercase tracking-[0.25em] text-xs md:text-sm font-bold mb-4 text-accent font-montserrat animate-fade-up">
                 {slide.subHeadline}
               </h2>
@@ -132,11 +135,7 @@ export default function Hero() {
           strokeWidth="2"
           viewBox="0 0 24 24"
         >
-          <path
-            d="M9 5l7 7-7 7"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
+          <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
 
@@ -147,7 +146,9 @@ export default function Hero() {
             key={i}
             onClick={() => setCurrent(i)}
             className={`h-1.5 transition-all duration-500 cursor-pointer rounded-full ${
-              current === i ? "w-12 bg-accent" : "w-6 bg-accent/20 hover:bg-accent/40"
+              current === i
+                ? "w-12 bg-accent"
+                : "w-6 bg-accent/20 hover:bg-accent/40"
             }`}
             aria-label={`Go to slide ${i + 1}`}
           />

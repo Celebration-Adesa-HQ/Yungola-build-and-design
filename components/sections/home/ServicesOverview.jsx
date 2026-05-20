@@ -3,23 +3,27 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { 
-  Building, 
-  Lamp, 
-  Home, 
-  Armchair, 
-  Flower, 
+import {
+  Building,
+  Lamp,
+  Home,
+  Armchair,
+  Flower,
   Layers,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
 } from "lucide-react";
 import { homeContent } from "@/lib/data/siteContent";
 
 const iconMap = {
-  building: <Building size={48} className="mx-auto text-accent" strokeWidth={1} />,
+  building: (
+    <Building size={48} className="mx-auto text-accent" strokeWidth={1} />
+  ),
   lamp: <Lamp size={48} className="mx-auto text-accent" strokeWidth={1} />,
   home: <Home size={48} className="mx-auto text-accent" strokeWidth={1} />,
-  armchair: <Armchair size={48} className="mx-auto text-accent" strokeWidth={1} />,
+  armchair: (
+    <Armchair size={48} className="mx-auto text-accent" strokeWidth={1} />
+  ),
   flower: <Flower size={48} className="mx-auto text-accent" strokeWidth={1} />,
   layers: <Layers size={48} className="mx-auto text-accent" strokeWidth={1} />,
 };
@@ -39,7 +43,7 @@ export default function ServicesOverview() {
       ([entry]) => {
         if (entry.isIntersecting) setVisible(true);
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
@@ -56,7 +60,7 @@ export default function ServicesOverview() {
         setVisibleCards(3);
       }
     };
-    
+
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -108,7 +112,6 @@ export default function ServicesOverview() {
       className="py-24 bg-darkBackground border-b border-outline-variant relative overflow-hidden"
     >
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
-        
         {/* Section Header */}
         <div
           className={`text-center mb-16 transition-all duration-1000 transform ${
@@ -129,7 +132,6 @@ export default function ServicesOverview() {
             visible ? "opacity-100 scale-100" : "opacity-0 scale-95"
           }`}
         >
-          
           {/* Left Arrow */}
           <button
             onClick={handlePrev}
@@ -149,24 +151,25 @@ export default function ServicesOverview() {
           </button>
 
           {/* Sliding Viewport */}
-          <div 
+          <div
             className="overflow-hidden relative z-10 w-full"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            <div 
+            <div
               className="flex gap-6 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
-              style={{ 
-                transform: `translateX(calc(-${activeIndex} * (100% / ${visibleCards} + ${24 / visibleCards}px)))` 
+              style={{
+                transform: `translateX(calc(-${activeIndex} * (100% / ${visibleCards} + ${24 / visibleCards}px)))`,
               }}
             >
               {servicesData.map((service) => {
-                const widthClass = visibleCards === 1 
-                  ? "w-full shrink-0" 
-                  : visibleCards === 2 
-                    ? "w-[calc(50%-12px)] shrink-0" 
-                    : "w-[calc(33.333%-16px)] shrink-0";
+                const widthClass =
+                  visibleCards === 1
+                    ? "w-full shrink-0"
+                    : visibleCards === 2
+                      ? "w-[calc(50%-12px)] shrink-0"
+                      : "w-[calc(33.333%-16px)] shrink-0";
 
                 return (
                   <Link
@@ -193,11 +196,11 @@ export default function ServicesOverview() {
                       <div className="text-accent mb-6 transition-transform duration-300 group-hover/card:scale-110 group-hover/card:-translate-y-1">
                         {iconMap[service.icon]}
                       </div>
-                      
+
                       <h3 className="text-lg font-bold uppercase tracking-widest mb-4 text-darkForeground font-montserrat group-hover/card:text-accent transition-colors duration-300">
                         {service.title}
                       </h3>
-                      
+
                       <p className="text-on-surface-variant text-sm leading-relaxed mb-8 font-light flex-grow font-hanken">
                         {service.description}
                       </p>
@@ -220,10 +223,10 @@ export default function ServicesOverview() {
                 key={i}
                 onClick={() => isValidDot && setActiveIndex(i)}
                 className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                  isActive 
-                    ? "w-8 bg-accent" 
-                    : isValidDot 
-                      ? "w-2 bg-outline-variant hover:bg-accent/40" 
+                  isActive
+                    ? "w-8 bg-accent"
+                    : isValidDot
+                      ? "w-2 bg-outline-variant hover:bg-accent/40"
                       : "w-2 bg-outline-variant/30 cursor-default"
                 }`}
                 disabled={!isValidDot}
@@ -232,7 +235,6 @@ export default function ServicesOverview() {
             );
           })}
         </div>
-
       </div>
     </section>
   );

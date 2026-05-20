@@ -1,6 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-import { notFound } from 'next/navigation';
+import fs from "fs";
+import path from "path";
+import { notFound } from "next/navigation";
 import GalleryViewer from "@/components/sections/gallery/GalleryViewer";
 
 export const metadata = {
@@ -8,36 +8,36 @@ export const metadata = {
   description: "Explore our category gallery.",
 };
 
-const CATEGORIES = {
-  "3d-design": "3D Design",
-  "construction": "Construction",
-  "drawing": "Drawing",
-};
-
 export default async function CategoryGalleryPage({ params }) {
   const { category } = await params;
+  const { getDynamicCategories } = require("@/lib/media/getMediaWithDimensions");
+  const dynamicCategories = getDynamicCategories();
+  const currentCategory = dynamicCategories.find(c => c.id === category);
 
-  if (!CATEGORIES[category]) {
+  if (!currentCategory) {
     notFound();
   }
 
-  const categoryTitle = CATEGORIES[category];
+  const categoryTitle = currentCategory.title;
   const images = [];
   const pdfs = [];
 
   try {
-    const mediaDir = path.join(process.cwd(), "public", "media", category);
+    const { getMediaWithDimensions, splitByOrientation } = require("@/lib/media/getMediaWithDimensions");
+    const media = getMediaWithDimensions(category);
+    const split = splitByOrientation(media);
     
-    const imagesDir = path.join(mediaDir, "images");
-    if (fs.existsSync(imagesDir)) {
-      const files = fs.readdirSync(imagesDir).filter(file => file.match(/\.(jpg|jpeg|png|gif|webp)$/i));
-      images.push(...files.map(f => `/media/${category}/images/${f}`));
-    }
+    // For Masonry grids and gallery cards, prioritize portrait and square.
+    // If not enough, we can include some landscape, but portrait/square is preferred.
+    const masonryImages = [...split.portrait, ...split.square, ...split.landscape];
+    images.push(...masonryImages);
 
-    const pdfsDir = path.join(mediaDir, "pdfs");
+    const pdfsDir = path.join(process.cwd(), "public", "media", category, "pdfs");
     if (fs.existsSync(pdfsDir)) {
-      const files = fs.readdirSync(pdfsDir).filter(file => file.endsWith(".pdf"));
-      pdfs.push(...files.map(f => `/media/${category}/pdfs/${f}`));
+      const files = fs
+        .readdirSync(pdfsDir)
+        .filter((file) => file.endsWith(".pdf"));
+      pdfs.push(...files.map((f) => `/media/${category}/pdfs/${f}`));
     }
   } catch (error) {
     console.error("Error reading directory for category:", category, error);
@@ -45,7 +45,7 @@ export default async function CategoryGalleryPage({ params }) {
 
   return (
     <main className="bg-surface-bright/40 text-darkForeground min-h-screen pt-32 font-montserrat antialiased">
-      <GalleryViewer 
+      <GalleryViewer
         categoryTitle={categoryTitle}
         images={images}
         pdfs={pdfs}

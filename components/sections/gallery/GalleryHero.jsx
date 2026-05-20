@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
 import { galleryContent } from "@/lib/data/siteContent";
 
@@ -86,7 +85,7 @@ export default function GalleryHero() {
         animate="visible"
         className="relative z-20 w-full max-w-7xl mx-auto px-6 md:px-12 mt-12 md:mt-16"
       >
-        <motion.p 
+        <motion.p
           variants={itemVariants}
           className="text-accent text-xs font-bold uppercase tracking-[0.2em] mb-4 font-montserrat"
         >
@@ -99,7 +98,7 @@ export default function GalleryHero() {
         >
           {hero.title}
         </motion.h1>
-        <motion.p 
+        <motion.p
           variants={itemVariants}
           className="text-on-surface-variant text-sm md:text-base leading-relaxed max-w-2xl font-hanken font-light"
         >

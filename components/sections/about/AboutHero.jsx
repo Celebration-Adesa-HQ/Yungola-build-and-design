@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
 import { aboutContent } from "@/lib/data/siteContent";
 
@@ -89,14 +88,14 @@ export default function AboutHero() {
         >
           {hero.badge}
         </motion.p>
-        
+
         <motion.h1
           variants={itemVariants}
           className="text-4xl md:text-6xl lg:text-7xl font-bold text-darkForeground uppercase tracking-tight font-montserrat mb-6 leading-none"
         >
           {hero.title}
         </motion.h1>
-        
+
         <motion.p
           variants={itemVariants}
           className="text-base md:text-lg text-on-surface-variant max-w-3xl leading-relaxed font-hanken font-light"

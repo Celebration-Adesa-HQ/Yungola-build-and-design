@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
 import GalleryHero from "@/components/sections/gallery/GalleryHero";
 import GalleryCategories from "@/components/sections/gallery/GalleryCategories";
 
@@ -22,10 +22,12 @@ export default function GalleryPage() {
 
     try {
       const mediaDir = path.join(process.cwd(), "public", "media", cat.id);
-      
+
       const imagesDir = path.join(mediaDir, "images");
       if (fs.existsSync(imagesDir)) {
-        const files = fs.readdirSync(imagesDir).filter(file => file.match(/\.(jpg|jpeg|png|gif|webp)$/i));
+        const files = fs
+          .readdirSync(imagesDir)
+          .filter((file) => file.match(/\.(jpg|jpeg|png|gif|webp)$/i));
         imagesCount = files.length;
         if (files.length > 0) {
           coverImage = `/media/${cat.id}/images/${files[0]}`;
@@ -34,7 +36,9 @@ export default function GalleryPage() {
 
       const pdfsDir = path.join(mediaDir, "pdfs");
       if (fs.existsSync(pdfsDir)) {
-        pdfsCount = fs.readdirSync(pdfsDir).filter(file => file.endsWith(".pdf")).length;
+        pdfsCount = fs
+          .readdirSync(pdfsDir)
+          .filter((file) => file.endsWith(".pdf")).length;
       }
     } catch (error) {
       console.error("Error reading directory for category:", cat.id, error);
@@ -44,7 +48,9 @@ export default function GalleryPage() {
       ...cat,
       imagesCount,
       pdfsCount,
-      coverImage: coverImage || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
+      coverImage:
+        coverImage ||
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
     };
   });
 

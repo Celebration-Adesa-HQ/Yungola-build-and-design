@@ -6,7 +6,8 @@ import Testimonials from "@/components/sections/home/Testimonials";
 
 export const metadata = {
   title: "YUNGOLA | Cinematic Architectural Design",
-  description: "Yungola merges structural precision with cinematic aesthetics to create residences that transcend mere living spaces. We build the exceptional.",
+  description:
+    "Yungola merges structural precision with cinematic aesthetics to create residences that transcend mere living spaces. We build the exceptional.",
 };
 
 export default function HomePage() {

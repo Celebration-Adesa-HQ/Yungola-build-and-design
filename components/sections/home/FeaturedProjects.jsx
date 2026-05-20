@@ -8,27 +8,31 @@ const projects = [
   {
     title: "The Monolith House",
     category: "3D Design",
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80",
+    image:
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80",
     href: "/gallery/3d-design",
   },
   {
     title: "Interior Craftsmanship",
     category: "Construction",
-    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1920&q=80",
+    image:
+      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1920&q=80",
     href: "/gallery/construction",
   },
   {
     title: "Philosophy",
     category: "Drawing",
-    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1920&q=80",
+    image:
+      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1920&q=80",
     href: "/gallery/drawing",
   },
   {
     title: "Horizon Estate",
     category: "3D Design",
-    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1920&q=80",
+    image:
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1920&q=80",
     href: "/gallery/3d-design",
-  }
+  },
 ];
 
 export default function FeaturedProjects() {
@@ -42,7 +46,7 @@ export default function FeaturedProjects() {
       ([entry]) => {
         if (entry.isIntersecting) setVisible(true);
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
@@ -51,7 +55,8 @@ export default function FeaturedProjects() {
   const scroll = (direction) => {
     if (carouselRef.current) {
       const cardWidth = carouselRef.current.children[0]?.offsetWidth || 400;
-      const scrollAmount = direction === "left" ? -cardWidth - 24 : cardWidth + 24;
+      const scrollAmount =
+        direction === "left" ? -cardWidth - 24 : cardWidth + 24;
       carouselRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
     }
   };
@@ -60,7 +65,10 @@ export default function FeaturedProjects() {
     setActiveIndex(index);
     if (carouselRef.current) {
       const cardWidth = carouselRef.current.children[0]?.offsetWidth || 400;
-      carouselRef.current.scrollTo({ left: index * (cardWidth + 24), behavior: "smooth" });
+      carouselRef.current.scrollTo({
+        left: index * (cardWidth + 24),
+        behavior: "smooth",
+      });
     }
   };
 
@@ -69,7 +77,11 @@ export default function FeaturedProjects() {
       const scrollLeft = carouselRef.current.scrollLeft;
       const cardWidth = carouselRef.current.children[0]?.offsetWidth || 400;
       const newIndex = Math.round(scrollLeft / (cardWidth + 24));
-      if (newIndex !== activeIndex && newIndex >= 0 && newIndex < projects.length) {
+      if (
+        newIndex !== activeIndex &&
+        newIndex >= 0 &&
+        newIndex < projects.length
+      ) {
         setActiveIndex(newIndex);
       }
     }
