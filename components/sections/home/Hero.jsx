@@ -79,7 +79,7 @@ export default function Hero() {
                 href={slide.link}
                 className="group bg-accent text-foreground hover:bg-accent/80 px-8 py-4 uppercase tracking-[0.2em] text-xs font-bold flex items-center gap-3 rounded-sm shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
               >
-                See Project
+                Explore Gallery
                 <svg
                   className="h-4 w-4 transform group-hover:translate-x-1 transition-transform duration-300"
                   fill="none"

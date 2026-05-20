@@ -4,14 +4,32 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import { projectsData } from "@/lib/data/projects";
-
-const projects = projectsData.slice(0, 4).map(p => ({
-  title: p.title,
-  category: p.type,
-  image: p.image,
-  href: `/projects/${p.id}`,
-}));
+const projects = [
+  {
+    title: "The Monolith House",
+    category: "3D Design",
+    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80",
+    href: "/gallery/3d-design",
+  },
+  {
+    title: "Interior Craftsmanship",
+    category: "Construction",
+    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1920&q=80",
+    href: "/gallery/construction",
+  },
+  {
+    title: "Philosophy",
+    category: "Drawing",
+    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1920&q=80",
+    href: "/gallery/drawing",
+  },
+  {
+    title: "Horizon Estate",
+    category: "3D Design",
+    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1920&q=80",
+    href: "/gallery/3d-design",
+  }
+];
 
 export default function FeaturedProjects() {
   const [visible, setVisible] = useState(false);

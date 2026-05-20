@@ -1,12 +1,53 @@
+import fs from 'fs';
+import path from 'path';
 import GalleryHero from "@/components/sections/gallery/GalleryHero";
-import GalleryProjects from "@/components/sections/gallery/GalleryProjects";
+import GalleryCategories from "@/components/sections/gallery/GalleryCategories";
 
 export const metadata = {
-  title: "Our Projects | YUNGOLA",
+  title: "Our Gallery | YUNGOLA",
   description: "Explore our cinematic architectural portfolio.",
 };
 
 export default function GalleryPage() {
+  const categories = [
+    { id: "3d-design", title: "3D Design" },
+    { id: "construction", title: "Construction" },
+    { id: "drawing", title: "Drawing" },
+  ];
+
+  const categoryData = categories.map((cat) => {
+    let imagesCount = 0;
+    let pdfsCount = 0;
+    let coverImage = null;
+
+    try {
+      const mediaDir = path.join(process.cwd(), "public", "media", cat.id);
+      
+      const imagesDir = path.join(mediaDir, "images");
+      if (fs.existsSync(imagesDir)) {
+        const files = fs.readdirSync(imagesDir).filter(file => file.match(/\.(jpg|jpeg|png|gif|webp)$/i));
+        imagesCount = files.length;
+        if (files.length > 0) {
+          coverImage = `/media/${cat.id}/images/${files[0]}`;
+        }
+      }
+
+      const pdfsDir = path.join(mediaDir, "pdfs");
+      if (fs.existsSync(pdfsDir)) {
+        pdfsCount = fs.readdirSync(pdfsDir).filter(file => file.endsWith(".pdf")).length;
+      }
+    } catch (error) {
+      console.error("Error reading directory for category:", cat.id, error);
+    }
+
+    return {
+      ...cat,
+      imagesCount,
+      pdfsCount,
+      coverImage: coverImage || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
+    };
+  });
+
   return (
     <main className="bg-surface-bright/40 text-darkForeground min-h-screen font-montserrat antialiased">
       {/* Projects Section */}
@@ -30,7 +71,7 @@ export default function GalleryPage() {
           <GalleryHero />
         </div>
         <div className="container mx-auto px-6 lg:px-12 relative z-10 max-w-7xl">
-          <GalleryProjects />
+          <GalleryCategories categories={categoryData} />
         </div>
       </section>
     </main>

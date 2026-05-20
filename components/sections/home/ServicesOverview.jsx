@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { 
   Building, 
   Lamp, 
@@ -168,9 +169,10 @@ export default function ServicesOverview() {
                     : "w-[calc(33.333%-16px)] shrink-0";
 
                 return (
-                  <div
+                  <Link
                     key={service.id}
-                    className={`${widthClass} service-card bg-surface-container p-10 text-center border border-outline-variant hover:border-accent/40 flex flex-col items-center group/card cursor-pointer relative overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl rounded-sm`}
+                    href={service.link || "#"}
+                    className={`${widthClass} service-card bg-surface-container p-10 text-center border border-outline-variant hover:border-accent/40 flex flex-col items-center group/card cursor-pointer relative overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl rounded-sm block`}
                   >
                     {/* Background Image - Fades in and zooms slightly on card hover */}
                     {service.image && (
@@ -200,7 +202,7 @@ export default function ServicesOverview() {
                         {service.description}
                       </p>
                     </div>
-                  </div>
+                  </Link>
                 );
               })}
             </div>
