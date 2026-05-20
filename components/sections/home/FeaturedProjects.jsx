@@ -3,43 +3,44 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { homeContent } from "@/lib/data/siteContent";
 
-const projects = [
-  {
-    title: "The Monolith House",
-    category: "3D Design",
-    image:
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80",
-    href: "/gallery/3d-design",
-  },
-  {
-    title: "Interior Craftsmanship",
-    category: "Construction",
-    image:
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1920&q=80",
-    href: "/gallery/construction",
-  },
-  {
-    title: "Philosophy",
-    category: "Drawing",
-    image:
-      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1920&q=80",
-    href: "/gallery/drawing",
-  },
-  {
-    title: "Horizon Estate",
-    category: "3D Design",
-    image:
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1920&q=80",
-    href: "/gallery/3d-design",
-  },
-];
+const projects = homeContent.featuredProjects;
 
 export default function FeaturedProjects() {
   const [visible, setVisible] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [visibleCards, setVisibleCards] = useState(4);
   const sectionRef = useRef(null);
   const carouselRef = useRef(null);
+
+  // Responsive visible cards count
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setVisibleCards(1);
+      } else if (window.innerWidth < 1024) {
+        setVisibleCards(2);
+      } else if (window.innerWidth < 1280) {
+        setVisibleCards(3);
+      } else {
+        setVisibleCards(4);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const maxIndex = Math.max(0, projects.length - visibleCards);
+
+  // Auto-boundary correction when resizing
+  useEffect(() => {
+    if (activeIndex > maxIndex) {
+      setActiveIndex(maxIndex);
+    }
+  }, [visibleCards, maxIndex, activeIndex]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -80,7 +81,7 @@ export default function FeaturedProjects() {
       if (
         newIndex !== activeIndex &&
         newIndex >= 0 &&
-        newIndex < projects.length
+        newIndex <= maxIndex
       ) {
         setActiveIndex(newIndex);
       }
@@ -110,48 +111,52 @@ export default function FeaturedProjects() {
       {/* Carousel Container */}
       <div className="relative w-full max-w-[1800px] mx-auto px-4 md:px-8">
         {/* Navigation Arrow Left */}
-        <button
-          aria-label="Previous project"
-          onClick={() => scroll("left")}
-          className="absolute left-4 top-1/3 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-on-surface-variant/20 hover:bg-on-surface-variant/40 flex items-center justify-center transition-colors border border-outline-variant/30 backdrop-blur-sm cursor-pointer"
-        >
-          <svg
-            className="w-6 h-6 text-darkForeground"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+        {maxIndex > 0 && (
+          <button
+            aria-label="Previous project"
+            onClick={() => scroll("left")}
+            className="absolute left-4 top-1/3 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-on-surface-variant/20 hover:bg-on-surface-variant/40 flex items-center justify-center transition-colors border border-outline-variant/30 backdrop-blur-sm cursor-pointer"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M15 19l-7-7 7-7"
-            ></path>
-          </svg>
-        </button>
+            <svg
+              className="w-6 h-6 text-darkForeground"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M15 19l-7-7 7-7"
+              ></path>
+            </svg>
+          </button>
+        )}
 
         {/* Navigation Arrow Right */}
-        <button
-          aria-label="Next project"
-          onClick={() => scroll("right")}
-          className="absolute right-4 top-1/3 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-on-surface-variant/20 hover:bg-on-surface-variant/40 flex items-center justify-center transition-colors border border-outline-variant/30 backdrop-blur-sm cursor-pointer"
-        >
-          <svg
-            className="w-6 h-6 text-darkForeground"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+        {maxIndex > 0 && (
+          <button
+            aria-label="Next project"
+            onClick={() => scroll("right")}
+            className="absolute right-4 top-1/3 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-on-surface-variant/20 hover:bg-on-surface-variant/40 flex items-center justify-center transition-colors border border-outline-variant/30 backdrop-blur-sm cursor-pointer"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M9 5l7 7-7 7"
-            ></path>
-          </svg>
-        </button>
+            <svg
+              className="w-6 h-6 text-darkForeground"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M9 5l7 7-7 7"
+              ></path>
+            </svg>
+          </button>
+        )}
 
         {/* Cards Wrapper */}
         <div
@@ -197,19 +202,21 @@ export default function FeaturedProjects() {
         </div>
 
         {/* Progress Indicators */}
-        <div className="flex justify-center items-center gap-2 mt-8 pb-8">
-          {projects.map((_, index) => (
-            <span
-              key={index}
-              onClick={() => scrollToIndex(index)}
-              className={`h-1 block transition-all duration-300 cursor-pointer ${
-                activeIndex === index
-                  ? "w-12 bg-accent"
-                  : "w-8 bg-on-surface-variant/30 hover:bg-on-surface-variant/60"
-              }`}
-            ></span>
-          ))}
-        </div>
+        {maxIndex > 0 && (
+          <div className="flex justify-center items-center gap-2 mt-8 pb-8">
+            {Array.from({ length: maxIndex + 1 }).map((_, index) => (
+              <span
+                key={index}
+                onClick={() => scrollToIndex(index)}
+                className={`h-1 block transition-all duration-300 cursor-pointer ${
+                  activeIndex === index
+                    ? "w-12 bg-accent"
+                    : "w-8 bg-on-surface-variant/30 hover:bg-on-surface-variant/60"
+                }`}
+              ></span>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Decorative background lines */}

@@ -133,22 +133,26 @@ export default function ServicesOverview() {
           }`}
         >
           {/* Left Arrow */}
-          <button
-            onClick={handlePrev}
-            className="absolute -left-4 md:-left-8 lg:-left-12 xl:-left-16 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full border border-outline-variant hover:border-accent flex items-center justify-center text-darkForeground hover:text-accent transition-all bg-surface-container/80 backdrop-blur-md hover:bg-surface-container shadow-2xl group cursor-pointer"
-            aria-label="Previous service"
-          >
-            <ChevronLeft className="w-5 h-5 group-hover:-translate-x-0.5 transition-transform" />
-          </button>
+          {maxIndex > 0 && (
+            <button
+              onClick={handlePrev}
+              className="absolute -left-4 md:-left-8 lg:-left-12 xl:-left-16 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full border border-outline-variant hover:border-accent flex items-center justify-center text-darkForeground hover:text-accent transition-all bg-surface-container/80 backdrop-blur-md hover:bg-surface-container shadow-2xl group cursor-pointer"
+              aria-label="Previous service"
+            >
+              <ChevronLeft className="w-5 h-5 group-hover:-translate-x-0.5 transition-transform" />
+            </button>
+          )}
 
           {/* Right Arrow */}
-          <button
-            onClick={handleNext}
-            className="absolute -right-4 md:-right-8 lg:-right-12 xl:-right-16 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full border border-outline-variant hover:border-accent flex items-center justify-center text-darkForeground hover:text-accent transition-all bg-surface-container/80 backdrop-blur-md hover:bg-surface-container shadow-2xl group cursor-pointer"
-            aria-label="Next service"
-          >
-            <ChevronRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
-          </button>
+          {maxIndex > 0 && (
+            <button
+              onClick={handleNext}
+              className="absolute -right-4 md:-right-8 lg:-right-12 xl:-right-16 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full border border-outline-variant hover:border-accent flex items-center justify-center text-darkForeground hover:text-accent transition-all bg-surface-container/80 backdrop-blur-md hover:bg-surface-container shadow-2xl group cursor-pointer"
+              aria-label="Next service"
+            >
+              <ChevronRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
+          )}
 
           {/* Sliding Viewport */}
           <div
@@ -213,28 +217,26 @@ export default function ServicesOverview() {
         </div>
 
         {/* Carousel Pagination Dots */}
-        <div className="flex justify-center mt-12 space-x-2">
-          {Array.from({ length: servicesData.length }).map((_, i) => {
-            const isValidDot = i <= maxIndex;
-            const isActive = i === activeIndex;
+        {maxIndex > 0 && (
+          <div className="flex justify-center mt-12 space-x-2">
+            {Array.from({ length: maxIndex + 1 }).map((_, i) => {
+              const isActive = i === activeIndex;
 
-            return (
-              <button
-                key={i}
-                onClick={() => isValidDot && setActiveIndex(i)}
-                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                  isActive
-                    ? "w-8 bg-accent"
-                    : isValidDot
-                      ? "w-2 bg-outline-variant hover:bg-accent/40"
-                      : "w-2 bg-outline-variant/30 cursor-default"
-                }`}
-                disabled={!isValidDot}
-                aria-label={`Go to slide ${i + 1}`}
-              ></button>
-            );
-          })}
-        </div>
+              return (
+                <button
+                  key={i}
+                  onClick={() => setActiveIndex(i)}
+                  className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                    isActive
+                      ? "w-8 bg-accent"
+                      : "w-2 bg-outline-variant hover:bg-accent/40"
+                  }`}
+                  aria-label={`Go to slide ${i + 1}`}
+                ></button>
+              );
+            })}
+          </div>
+        )}
       </div>
     </section>
   );

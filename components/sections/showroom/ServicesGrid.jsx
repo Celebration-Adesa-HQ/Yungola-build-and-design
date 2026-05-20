@@ -125,22 +125,26 @@ export default function ServicesGrid() {
       {/* 2. Slider Viewport Container with Side Controls */}
       <div className="relative group/carousel px-0">
         {/* Left Side Control Arrow */}
-        <button
-          onClick={handlePrev}
-          className="absolute -left-4 md:-left-8 lg:-left-12 xl:-left-16 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full border border-outline-variant hover:border-accent flex items-center justify-center text-darkForeground hover:text-accent transition-all bg-surface-container/80 backdrop-blur-md hover:bg-surface-container shadow-2xl group cursor-pointer"
-          aria-label="Previous Slide"
-        >
-          <ChevronLeft className="w-5 h-5 group-hover:-translate-x-0.5 transition-transform" />
-        </button>
+        {maxIndex > 0 && (
+          <button
+            onClick={handlePrev}
+            className="absolute -left-4 md:-left-8 lg:-left-12 xl:-left-16 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full border border-outline-variant hover:border-accent flex items-center justify-center text-darkForeground hover:text-accent transition-all bg-surface-container/80 backdrop-blur-md hover:bg-surface-container shadow-2xl group cursor-pointer"
+            aria-label="Previous Slide"
+          >
+            <ChevronLeft className="w-5 h-5 group-hover:-translate-x-0.5 transition-transform" />
+          </button>
+        )}
 
         {/* Right Side Control Arrow */}
-        <button
-          onClick={handleNext}
-          className="absolute -right-4 md:-right-8 lg:-right-12 xl:-right-16 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full border border-outline-variant hover:border-accent flex items-center justify-center text-darkForeground hover:text-accent transition-all bg-surface-container/80 backdrop-blur-md hover:bg-surface-container shadow-2xl group cursor-pointer"
-          aria-label="Next Slide"
-        >
-          <ChevronRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
-        </button>
+        {maxIndex > 0 && (
+          <button
+            onClick={handleNext}
+            className="absolute -right-4 md:-right-8 lg:-right-12 xl:-right-16 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full border border-outline-variant hover:border-accent flex items-center justify-center text-darkForeground hover:text-accent transition-all bg-surface-container/80 backdrop-blur-md hover:bg-surface-container shadow-2xl group cursor-pointer"
+            aria-label="Next Slide"
+          >
+            <ChevronRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
+          </button>
+        )}
 
         {/* Sliding Viewport */}
         <div
@@ -207,29 +211,26 @@ export default function ServicesGrid() {
       </div>
 
       {/* 3. Slider Indicators (Bottom Dots/Bars) */}
-      <div className="flex items-center justify-center gap-3 mt-10">
-        {Array.from({ length: services.length }).map((_, idx) => {
-          // Dots are only clickable if they represent valid index transitions
-          const isValidDot = idx <= maxIndex;
-          const isActive = idx === currentIndex;
+      {maxIndex > 0 && (
+        <div className="flex items-center justify-center gap-3 mt-10">
+          {Array.from({ length: maxIndex + 1 }).map((_, idx) => {
+            const isActive = idx === currentIndex;
 
-          return (
-            <button
-              key={idx}
-              onClick={() => isValidDot && handleDotClick(idx)}
-              className={`h-1.5 rounded-full transition-all duration-500 ${
-                isActive
-                  ? "w-8 bg-accent"
-                  : isValidDot
-                    ? "w-2 bg-outline-variant hover:bg-accent/40 cursor-pointer"
-                    : "w-2 bg-outline-variant/30 cursor-default"
-              }`}
-              disabled={!isValidDot}
-              aria-label={`Go to slide ${idx + 1}`}
-            />
-          );
-        })}
-      </div>
+            return (
+              <button
+                key={idx}
+                onClick={() => handleDotClick(idx)}
+                className={`h-1.5 rounded-full transition-all duration-500 cursor-pointer ${
+                  isActive
+                    ? "w-8 bg-accent"
+                    : "w-2 bg-outline-variant hover:bg-accent/40"
+                }`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
