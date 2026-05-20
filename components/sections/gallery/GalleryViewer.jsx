@@ -8,12 +8,12 @@ import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/styles.css";
 import { ZoomIn, FileText, ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import { Document, Page, pdfjs } from "react-pdf";
-import "react-pdf/dist/Page/AnnotationLayer.css";
-import "react-pdf/dist/Page/TextLayer.css";
+import dynamic from "next/dynamic";
 
-// Configure PDF worker
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+const PdfPreview = dynamic(() => import("./PdfPreview"), {
+  ssr: false,
+  loading: () => <span className="text-xs text-darkSecondaryForeground">Loading engine...</span>
+});
 
 export default function GalleryViewer({ categoryTitle, images, pdfs }) {
   const [lightboxIndex, setLightboxIndex] = useState(-1);
@@ -80,12 +80,13 @@ export default function GalleryViewer({ categoryTitle, images, pdfs }) {
                 onClick={() => setLightboxIndex(idx)}
               >
                 <div className="relative w-full overflow-hidden">
-                  {/* Using standard img for masonry aspect ratio ease, but next/image works with unoptimized or specific layout */}
-                  <img
+                  <Image
                     src={src}
                     alt={`Gallery item ${idx + 1}`}
+                    width={0}
+                    height={0}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-darkBackground/20 group-hover:bg-transparent transition-colors duration-300" />
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
@@ -113,7 +114,7 @@ export default function GalleryViewer({ categoryTitle, images, pdfs }) {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {pdfs.map((pdf, idx) => (
-              <div key={pdf} className="bg-surface-container border border-outline-variant p-6 rounded-sm flex flex-col group hover:border-accent transition-colors">
+              <div key={pdf} className="bg-surface-container h-fit border border-outline-variant p-6 rounded-sm flex flex-col group hover:border-accent transition-colors">
                 <div className="flex items-start gap-4 mb-6">
                   <div className="w-12 h-12 bg-darkBackground border border-outline-variant rounded-sm flex items-center justify-center text-accent shrink-0 group-hover:bg-accent group-hover:text-darkBackground transition-colors">
                     <FileText size={24} />
@@ -129,22 +130,12 @@ export default function GalleryViewer({ categoryTitle, images, pdfs }) {
                 </div>
                 
                 {/* PDF Preview Thumbnail (Page 1) */}
-                <a href={pdf} target="_blank" rel="noopener noreferrer" className="block relative w-full aspect-[1/1.4] overflow-hidden border border-outline-variant/30 bg-white/5 group-hover:opacity-80 transition-opacity">
-                  <div className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden">
-                    <Document
-                      file={pdf}
-                      onLoadSuccess={(data) => onDocumentLoadSuccess(pdf, data)}
-                      loading={<span className="text-xs text-darkSecondaryForeground">Loading preview...</span>}
-                      className="w-full h-full flex items-start justify-center"
-                    >
-                      <Page 
-                        pageNumber={1} 
-                        renderTextLayer={false} 
-                        renderAnnotationLayer={false}
-                        width={300}
-                        className="shadow-2xl"
-                      />
-                    </Document>
+                <a href={pdf} target="_blank" rel="noopener noreferrer" className="block relative w-full overflow-hidden border border-outline-variant/30 bg-white/5 group-hover:opacity-80 transition-opacity">
+                  <div className="pointer-events-none flex items-center justify-center overflow-hidden">
+                    <PdfPreview 
+                      pdf={pdf} 
+                      onDocumentLoadSuccess={onDocumentLoadSuccess} 
+                    />
                   </div>
                 </a>
                 
