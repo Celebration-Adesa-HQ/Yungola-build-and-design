@@ -92,6 +92,7 @@ export default function GalleryViewer({ categoryTitle, images, pdfs }) {
                     height={height}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    priority={idx < 2}
                   />
                   <div className="absolute inset-0 bg-darkBackground/20 group-hover:bg-transparent transition-colors duration-300" />
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">

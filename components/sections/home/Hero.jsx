@@ -75,8 +75,13 @@ export default function Hero() {
               </h2>
 
               <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold uppercase tracking-wider mb-8 leading-tight text-white font-montserrat animate-fade-up">
-                {slide.headline}
+                {slide.headline}{" "}
+                <span className="text-accent-dark">{slide.highlight}</span>
               </h1>
+
+              {/* <h2 className="text-xl text-accent md:text-2xl lg:text-3xl xl:text-4xl font-bold uppercase tracking-wider mb-8 leading-tight font-montserrat animate-fade-up">
+                {slide.bottomText}
+              </h2> */}
 
               <Link
                 href={slide.link}

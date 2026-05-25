@@ -13,13 +13,17 @@ export default function PdfPreview({ pdf, onDocumentLoadSuccess }) {
       file={pdf}
       onLoadSuccess={(data) => onDocumentLoadSuccess(pdf, data)}
       onLoadError={(error) => console.error("PDF Load Error:", error)}
-      loading={<span className="text-xs text-darkSecondaryForeground">Loading preview...</span>}
+      loading={
+        <span className="text-xs text-darkSecondaryForeground">
+          Loading preview...
+        </span>
+      }
       error={<span className="text-xs text-red-500">Failed to load PDF</span>}
       className="w-full h-full flex items-start justify-center"
     >
-      <Page 
-        pageNumber={1} 
-        renderTextLayer={false} 
+      <Page
+        pageNumber={1}
+        renderTextLayer={false}
         renderAnnotationLayer={false}
         className="shadow-2xl [&>canvas]:w-full! [&>canvas]:h-auto!"
         onLoadError={(error) => console.error("Page Load Error:", error)}
