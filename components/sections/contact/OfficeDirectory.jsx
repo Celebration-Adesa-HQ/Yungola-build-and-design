@@ -107,8 +107,8 @@ export default function OfficeDirectory() {
         className="relative h-72 rounded-sm overflow-hidden bg-surface-container border border-outline-variant shadow-2xl group cursor-pointer"
       >
         <iframe
-          title="Yungola Build and Design Location"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d253682.63739698!2d3.1585992!3d6.548055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b2ae68280c1%3A0xdc9e87a367c3d9cb!2sLagos%2C%20Nigeria!5e0!3m2!1sen!2sus!4v1"
+          title="Yungola Build and Design — 5 Ayanleye Street, Ogba, Lagos"
+          src="https://maps.google.com/maps?q=5+Ayanleye+Street,+Ogba,+Lagos+State,+Nigeria&t=&z=17&ie=UTF8&iwloc=&output=embed"
           width="100%"
           height="100%"
           style={{ border: 0, filter: "grayscale(90%) contrast(1.2)" }}
@@ -117,9 +117,12 @@ export default function OfficeDirectory() {
           referrerPolicy="no-referrer-when-downgrade"
           className="transition-all duration-500 group-hover:filter-none"
         />
-        <div className="absolute bottom-3 left-3 bg-darkBackground/90 backdrop-blur-sm px-3 py-1.5 rounded-sm border border-outline-variant pointer-events-none z-10">
+        <div className="absolute bottom-3 left-3 bg-surface-container backdrop-blur-sm px-3 py-1.5 rounded-sm border border-outline-variant pointer-events-none z-10">
           <span className="text-[10px] text-accent uppercase tracking-widest font-montserrat font-bold block">
             Lagos Office
+          </span>
+          <span className="text-[9px] text-on-surface-variant font-hanken block mt-0.5">
+            5, Ayanleye St, Ogba
           </span>
         </div>
       </motion.div>
