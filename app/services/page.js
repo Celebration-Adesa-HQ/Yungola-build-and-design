@@ -6,12 +6,12 @@ import MaterialSamples from "@/components/sections/showroom/MaterialSamples";
 import ShowHero from "@/components/sections/showroom/ShowHero";
 
 export const metadata = {
-  title: "Services & Showroom | YUNGOLA",
+  title: "Our Services | YUNGOLA",
   description:
-    "Explore our core capabilities, interior design styles, and premium material palette.",
+    "Explore our core capabilities, signature design styles, and premium material palette.",
 };
 
-export default function ShowroomPage() {
+export default function ServicesPage() {
   return (
     <div className="bg-surface-bright/40 text-darkForeground min-h-screen pt-24 font-montserrat antialiased">
       {/* Page Header */}

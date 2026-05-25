@@ -7,7 +7,7 @@ export default function sitemap() {
   const routes = [
     "",
     "/gallery",
-    "/showroom",
+    "/services",
     "/about",
     "/contact",
   ].map((route) => ({

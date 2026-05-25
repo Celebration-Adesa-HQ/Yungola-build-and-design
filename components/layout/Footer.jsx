@@ -61,7 +61,7 @@ export default function Footer() {
             About Us
           </Link>
           <Link
-            href="/showroom"
+            href="/services"
             className="font-hanken text-on-surface-variant hover:text-accent transition-colors duration-200 text-sm"
           >
             Services

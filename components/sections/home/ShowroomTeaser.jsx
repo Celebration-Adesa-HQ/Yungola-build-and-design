@@ -23,7 +23,7 @@ export default function ShowroomTeaser() {
     <section
       ref={ref}
       className="relative min-h-[70vh] flex items-center justify-center overflow-hidden border-b border-outline-variant"
-      aria-labelledby="showroom-heading"
+      aria-labelledby="services-heading"
     >
       {/* Background */}
       <div
@@ -32,7 +32,7 @@ export default function ShowroomTeaser() {
           backgroundImage: `url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920&q=80')`,
         }}
         role="img"
-        aria-label="Luxury interior design showroom"
+        aria-label="Luxury interior design and architectural services"
       />
 
       {/* Overlay */}
@@ -50,12 +50,12 @@ export default function ShowroomTeaser() {
           {showroomTeaser.badge}
         </p>
         <h2
-          id="showroom-heading"
+          id="services-heading"
           className="text-4xl lg:text-7xl font-bold text-darkForeground mb-6 leading-tight font-montserrat uppercase tracking-wide"
         >
           {showroomTeaser.title.split(" ").map((word, i, arr) => (
             <span key={word}>
-              {word === "Showroom" ? <span className="text-accent">{word}</span> : word}
+              {word === "Services" ? <span className="text-accent">{word}</span> : word}
               {i < arr.length - 1 ? " " : ""}
             </span>
           ))}
