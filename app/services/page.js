@@ -1,9 +1,9 @@
-import ShowroomHero from "@/components/sections/showroom/ShowroomHero";
-import ServicesGrid from "@/components/sections/showroom/ServicesGrid";
-import CoreCapabilities from "@/components/sections/showroom/CoreCapabilities";
-import InteriorStyles from "@/components/sections/showroom/InteriorStyles";
-import MaterialSamples from "@/components/sections/showroom/MaterialSamples";
-import ShowHero from "@/components/sections/showroom/ShowHero";
+import ServicesHero from "@/components/sections/services/ServicesHero";
+import ServicesGrid from "@/components/sections/services/ServicesGrid";
+import CoreCapabilities from "@/components/sections/services/CoreCapabilities";
+import InteriorStyles from "@/components/sections/services/InteriorStyles";
+import MaterialSamples from "@/components/sections/services/MaterialSamples";
+import ShowHero from "@/components/sections/services/ShowHero";
 
 export const metadata = {
   title: "Our Services | YUNGOLA",
@@ -19,7 +19,7 @@ export default function ServicesPage() {
 
       {/* Services Section - Bordered Container */}
       <section className="py-20 px-4 md:px-8 lg:px-16 max-w-7xl mx-auto border-x border-outline-variant/40 bg-surface-container/30 backdrop-blur-sm">
-        <ShowroomHero />
+        <ServicesHero />
         <ServicesGrid />
         <CoreCapabilities />
       </section>

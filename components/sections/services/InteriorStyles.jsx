@@ -60,7 +60,7 @@ export default function InteriorStyles() {
             href="/contact"
             className="inline-flex items-center text-xs font-bold tracking-widest uppercase bg-transparent border border-accent text-accent hover:bg-accent hover:text-on-primary px-8 py-4 transition-all duration-300 rounded-sm font-montserrat"
           >
-            Book a Showroom Visit
+            Book a Consultation
           </Link>
         </div>
       </div>

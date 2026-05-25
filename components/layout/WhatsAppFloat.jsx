@@ -18,7 +18,7 @@ export default function WhatsAppFloat() {
             <div className="flex items-center gap-3">
               <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
               <div>
-                <h4 className="font-bold text-sm tracking-wider font-montserrat text-accent">YUNGOLA STUDIO</h4>
+                <h4 className="font-bold text-sm tracking-wider font-montserrat text-accent">YUNGOLA BUILD & DESIGN</h4>
                 <p className="text-[10px] text-on-surface-variant">Online Assistant</p>
               </div>
             </div>

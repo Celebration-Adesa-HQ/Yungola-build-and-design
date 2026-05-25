@@ -115,7 +115,7 @@ export default function ServicesGrid() {
       {/* 1. Sleek Editorial Header */}
       <div className="mb-12 border-b border-outline-variant/30 pb-8">
         <span className="text-accent text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase block mb-3 font-montserrat">
-          STUDIO OFFERINGS
+          CORE OFFERINGS
         </span>
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold uppercase tracking-wider font-montserrat text-darkForeground leading-tight">
           OUR DESIGN & BUILD CAPABILITIES

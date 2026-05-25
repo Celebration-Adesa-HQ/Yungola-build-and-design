@@ -7,7 +7,7 @@ import { contactContent } from "@/lib/data/siteContent";
 
 const icons = [MapPin, Phone, Mail, Clock];
 
-export default function StudioDirectory() {
+export default function OfficeDirectory() {
   const { directory } = contactContent;
 
   const containerVariants = {
@@ -119,7 +119,7 @@ export default function StudioDirectory() {
         />
         <div className="absolute bottom-3 left-3 bg-darkBackground/90 backdrop-blur-sm px-3 py-1.5 rounded-sm border border-outline-variant pointer-events-none z-10">
           <span className="text-[10px] text-accent uppercase tracking-widest font-montserrat font-bold block">
-            Lagos Studio
+            Lagos Office
           </span>
         </div>
       </motion.div>

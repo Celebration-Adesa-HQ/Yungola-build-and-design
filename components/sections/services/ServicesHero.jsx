@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { showroomContent } from "@/lib/data/siteContent";
 
-export default function ShowroomHero() {
+export default function ServicesHero() {
   const { spatial } = showroomContent;
 
   return (

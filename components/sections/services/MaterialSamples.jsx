@@ -22,7 +22,7 @@ export default function MaterialSamples() {
           </div>
           <div>
             <span className="text-[10px] uppercase tracking-[0.2em] text-darkSecondaryForeground font-bold border-b border-accent pb-1 font-montserrat inline-block">
-              Available in Showroom
+              Available on Request
             </span>
           </div>
         </div>

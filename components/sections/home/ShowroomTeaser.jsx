@@ -67,7 +67,7 @@ export default function ShowroomTeaser() {
         </p>
         <Link
           href={showroomTeaser.ctaLink}
-          id="showroom-teaser-btn"
+          id="services-teaser-btn"
           className="group inline-flex items-center gap-3 px-10 py-4 bg-accent text-on-primary text-sm font-bold uppercase tracking-[0.12em] rounded-sm hover:bg-accentDark transition-all duration-200 cursor-pointer shadow-[0_4px_32px_rgba(245,196,0,0.35)] font-montserrat"
         >
           {showroomTeaser.ctaLabel}
