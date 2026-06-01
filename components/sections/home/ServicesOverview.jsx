@@ -28,8 +28,9 @@ const iconMap = {
   layers: <Layers size={48} className="mx-auto text-accent" strokeWidth={1} />,
 };
 
+const servicesData = homeContent.services;
+
 export default function ServicesOverview() {
-  const servicesData = homeContent.services;
   const [activeIndex, setActiveIndex] = useState(0);
   const [visibleCards, setVisibleCards] = useState(3);
   const [visible, setVisible] = useState(false);
@@ -52,13 +53,16 @@ export default function ServicesOverview() {
   // Responsive visible cards count
   useEffect(() => {
     const handleResize = () => {
+      let cards = 3;
       if (window.innerWidth < 768) {
-        setVisibleCards(1);
+        cards = 1;
       } else if (window.innerWidth < 1024) {
-        setVisibleCards(2);
-      } else {
-        setVisibleCards(3);
+        cards = 2;
       }
+      setVisibleCards(cards);
+
+      const newMaxIndex = Math.max(0, servicesData.length - cards);
+      setActiveIndex((prev) => Math.min(prev, newMaxIndex));
     };
 
     handleResize();
@@ -67,13 +71,6 @@ export default function ServicesOverview() {
   }, []);
 
   const maxIndex = Math.max(0, servicesData.length - visibleCards);
-
-  // Auto-boundary correction when resizing
-  useEffect(() => {
-    if (activeIndex > maxIndex) {
-      setActiveIndex(maxIndex);
-    }
-  }, [visibleCards, maxIndex, activeIndex]);
 
   const handlePrev = () => {
     setActiveIndex((prev) => (prev === 0 ? maxIndex : prev - 1));

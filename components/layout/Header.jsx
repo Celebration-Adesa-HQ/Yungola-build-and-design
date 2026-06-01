@@ -22,8 +22,11 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    setMobileOpen(false);
-    setOpenDropdown(null);
+    const timer = setTimeout(() => {
+      setMobileOpen(false);
+      setOpenDropdown(null);
+    }, 0);
+    return () => clearTimeout(timer);
   }, [pathname]);
 
   useEffect(() => {

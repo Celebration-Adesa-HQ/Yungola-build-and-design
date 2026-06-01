@@ -13,11 +13,11 @@ export default function Hero() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      handleNext();
+      setCurrent((p) => (p === slides.length - 1 ? 0 : p + 1));
     }, 6000);
 
     return () => clearInterval(timer);
-  }, [current, animating]);
+  }, [current]);
 
   const handlePrev = () => {
     if (animating) return;

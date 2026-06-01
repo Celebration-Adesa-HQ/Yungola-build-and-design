@@ -17,7 +17,6 @@ export default function GalleryPage() {
 
   const categoryData = categories.map((cat) => {
     let imagesCount = 0;
-    let pdfsCount = 0;
     let coverImage = null;
 
     try {
@@ -33,13 +32,6 @@ export default function GalleryPage() {
           coverImage = `/media/${cat.id}/images/${files[0]}`;
         }
       }
-
-      const pdfsDir = path.join(mediaDir, "pdfs");
-      if (fs.existsSync(pdfsDir)) {
-        pdfsCount = fs
-          .readdirSync(pdfsDir)
-          .filter((file) => file.endsWith(".pdf")).length;
-      }
     } catch (error) {
       console.error("Error reading directory for category:", cat.id, error);
     }
@@ -47,7 +39,6 @@ export default function GalleryPage() {
     return {
       ...cat,
       imagesCount,
-      pdfsCount,
       coverImage:
         coverImage ||
         "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",

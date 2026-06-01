@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 export default function WhatsAppFloat() {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,18 +42,18 @@ export default function WhatsAppFloat() {
 
           {/* Quick replies */}
           <div className="flex flex-col gap-2 font-montserrat">
-            <a
+            <Link
               href="/contact"
               className="w-full text-left bg-accent hover:bg-accentDark text-on-primary font-bold text-xs py-2.5 px-4 tracking-wider uppercase transition-colors rounded-sm shadow-md"
             >
               Start Your Project
-            </a>
-            <a
+            </Link>
+            <Link
               href="/gallery"
               className="w-full text-left border border-outline-variant hover:bg-accent/10 text-darkForeground font-semibold text-xs py-2.5 px-4 tracking-wider uppercase transition-colors rounded-sm"
             >
               Browse Works
-            </a>
+            </Link>
             <a
               href={`https://wa.me/${phone}?text=${defaultMessage}`}
               target="_blank"

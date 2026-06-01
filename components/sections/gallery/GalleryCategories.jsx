@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowUpRight, FileText, Image as ImageIcon } from "lucide-react";
+import { ArrowUpRight, Image as ImageIcon } from "lucide-react";
 
 export default function GalleryCategories({ categories }) {
   return (
@@ -34,12 +34,6 @@ export default function GalleryCategories({ categories }) {
                 <div className="flex items-center gap-2 bg-darkBackground/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-outline-variant text-xs font-semibold">
                   <ImageIcon size={14} className="text-accent" />
                   <span>{category.imagesCount}</span>
-                </div>
-              )}
-              {category.pdfsCount > 0 && (
-                <div className="flex items-center gap-2 bg-darkBackground/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-outline-variant text-xs font-semibold">
-                  <FileText size={14} className="text-accent" />
-                  <span>{category.pdfsCount}</span>
                 </div>
               )}
             </div>

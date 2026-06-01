@@ -41,8 +41,9 @@ const iconMap = {
   ),
 };
 
+const services = showroomContent.servicesGrid;
+
 export default function ServicesGrid() {
-  const services = showroomContent.servicesGrid;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCards, setVisibleCards] = useState(3);
   const [dragStartX, setDragStartX] = useState(0);
@@ -51,13 +52,16 @@ export default function ServicesGrid() {
   // Responsive visible cards count
   useEffect(() => {
     const handleResize = () => {
+      let cards = 3;
       if (window.innerWidth < 768) {
-        setVisibleCards(1);
+        cards = 1;
       } else if (window.innerWidth < 1024) {
-        setVisibleCards(2);
-      } else {
-        setVisibleCards(3);
+        cards = 2;
       }
+      setVisibleCards(cards);
+
+      const newMaxIndex = Math.max(0, services.length - cards);
+      setCurrentIndex((prev) => Math.min(prev, newMaxIndex));
     };
 
     handleResize();
@@ -66,13 +70,6 @@ export default function ServicesGrid() {
   }, []);
 
   const maxIndex = Math.max(0, services.length - visibleCards);
-
-  // Auto-boundary correction when resizing
-  useEffect(() => {
-    if (currentIndex > maxIndex) {
-      setCurrentIndex(maxIndex);
-    }
-  }, [visibleCards, maxIndex, currentIndex]);
 
   // Navigation handlers
   const handlePrev = () => {

@@ -66,7 +66,7 @@ export default function Testimonials() {
           {/* Quote */}
           <div className="min-h-[140px] flex items-center mb-10">
             <p className="text-on-surface-variant italic leading-relaxed text-base md:text-lg transition-opacity duration-500 font-hanken">
-              "{current.quote}"
+              &ldquo;{current.quote}&rdquo;
             </p>
           </div>
           {/* User Info */}

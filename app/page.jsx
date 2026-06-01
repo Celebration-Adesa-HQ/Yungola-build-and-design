@@ -17,7 +17,6 @@ export default function HomePage() {
       <About />
       <ServicesOverview />
       <FeaturedProjects />
-      <Testimonials />
     </div>
   );
 }

@@ -17,15 +17,18 @@ export default function FeaturedProjects() {
   // Responsive visible cards count
   useEffect(() => {
     const handleResize = () => {
+      let cards = 4;
       if (window.innerWidth < 640) {
-        setVisibleCards(1);
+        cards = 1;
       } else if (window.innerWidth < 1024) {
-        setVisibleCards(2);
+        cards = 2;
       } else if (window.innerWidth < 1280) {
-        setVisibleCards(3);
-      } else {
-        setVisibleCards(4);
+        cards = 3;
       }
+      setVisibleCards(cards);
+
+      const newMaxIndex = Math.max(0, projects.length - cards);
+      setActiveIndex((prev) => Math.min(prev, newMaxIndex));
     };
 
     handleResize();
@@ -34,13 +37,6 @@ export default function FeaturedProjects() {
   }, []);
 
   const maxIndex = Math.max(0, projects.length - visibleCards);
-
-  // Auto-boundary correction when resizing
-  useEffect(() => {
-    if (activeIndex > maxIndex) {
-      setActiveIndex(maxIndex);
-    }
-  }, [visibleCards, maxIndex, activeIndex]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

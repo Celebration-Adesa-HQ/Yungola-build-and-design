@@ -1,5 +1,3 @@
-import fs from "fs";
-import path from "path";
 import { notFound } from "next/navigation";
 import GalleryViewer from "@/components/sections/gallery/GalleryViewer";
 import { getDynamicCategories, getMediaWithDimensions, splitByOrientation } from "@/lib/media/getMediaWithDimensions";
@@ -20,7 +18,6 @@ export default async function CategoryGalleryPage({ params }) {
 
   const categoryTitle = currentCategory.title;
   const images = [];
-  const pdfs = [];
 
   try {
     const media = await getMediaWithDimensions(category);
@@ -30,14 +27,6 @@ export default async function CategoryGalleryPage({ params }) {
     // If not enough, we can include some landscape, but portrait/square is preferred.
     const masonryImages = [...split.portrait, ...split.square, ...split.landscape];
     images.push(...masonryImages);
-
-    const pdfsDir = path.join(process.cwd(), "public", "media", category, "pdfs");
-    if (fs.existsSync(pdfsDir)) {
-      const files = fs
-        .readdirSync(pdfsDir)
-        .filter((file) => file.endsWith(".pdf"));
-      pdfs.push(...files.map((f) => `/media/${category}/pdfs/${f}`));
-    }
   } catch (error) {
     console.error("Error reading directory for category:", category, error);
   }
@@ -47,7 +36,6 @@ export default async function CategoryGalleryPage({ params }) {
       <GalleryViewer
         categoryTitle={categoryTitle}
         images={images}
-        pdfs={pdfs}
       />
     </main>
   );
