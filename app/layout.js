@@ -6,6 +6,8 @@ import WhatsAppFloat from "@/components/layout/WhatsAppFloat";
 import { Calendar, Phone } from "lucide-react";
 import Link from "next/link";
 import { navigation, homeContent } from "@/lib/data/siteContent";
+import { organizationSchema, websiteSchema } from "@/lib/seo/structured-data";
+import { BASE_URL, BRAND, GLOBAL_KEYWORDS } from "@/lib/seo/metadata";
 
 const hankenGrotesk = Hanken_Grotesk({
   variable: "--font-hanken",
@@ -35,80 +37,95 @@ const oswald = Oswald({
   display: "swap",
 });
 
+/**
+ * Root layout metadata — applies to all pages as defaults.
+ * Individual pages override title/description/ogImage via generatePageMetadata().
+ */
 export const metadata = {
-  metadataBase: new URL("https://www.yungolabuildanddesign.com"),
+  metadataBase: new URL(BASE_URL),
+
   title: {
-    default: "Yungola Build and Design | Architecture, Construction & Design",
+    default: "Yungola Build and Design | Cinematic Architecture & Luxury Construction Nigeria",
     template: "%s | Yungola Build and Design",
   },
   description:
-    "Premium architecture, design and construction company transforming ideas into built realities. From concept drawings to completed homes and commercial spaces across Nigeria.",
-  keywords: [
-    "architecture Nigeria",
-    "construction company Lagos",
-    "interior design Nigeria",
-    "building design",
-    "residential construction",
-    "commercial construction",
-    "Yungola Build and Design",
-  ],
-  authors: [{ name: "Yungola Build and Design" }],
-  creator: "Yungola Build and Design",
+    "Yungola Build and Design is Nigeria's premium cinematic architectural design and construction studio. We transform visions into breathtaking built realities — from photorealistic 3D designs to luxury turnkey construction in Lagos, Abuja, and beyond.",
+  keywords: GLOBAL_KEYWORDS,
+  authors: [{ name: BRAND.name, url: BASE_URL }],
+  creator: BRAND.name,
+  publisher: BRAND.name,
+
   openGraph: {
     type: "website",
-    locale: "en_NG",
-    url: "https://www.yungolabuildanddesign.com",
-    siteName: "Yungola Build and Design",
-    title: "Yungola Build and Design | Architecture, Construction & Design",
+    locale: BRAND.locale,
+    url: BASE_URL,
+    siteName: BRAND.name,
+    title: "Yungola Build and Design | Cinematic Architecture & Luxury Construction Nigeria",
     description:
-      "Premium architecture, design and construction company transforming ideas into built realities.",
+      "Premium cinematic architectural design and construction studio transforming ideas into luxury built realities across Nigeria.",
+    images: [
+      {
+        url: `${BASE_URL}/og/yungola-og-default.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Yungola Build and Design — Cinematic Architecture Nigeria",
+      },
+    ],
   },
+
   twitter: {
     card: "summary_large_image",
-    title: "Yungola Build and Design",
-    description: "Premium architecture, design and construction company.",
+    site: BRAND.twitterHandle,
+    creator: BRAND.twitterHandle,
+    title: "Yungola Build and Design | Architecture & Luxury Construction",
+    description:
+      "Premium cinematic architectural design and construction studio in Lagos, Nigeria.",
+    images: [`${BASE_URL}/og/yungola-og-default.jpg`],
   },
+
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
+
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
+
+  manifest: "/site.webmanifest",
+
+  // Add Google Search Console verification token when ready:
+  // verification: { google: "YOUR_TOKEN_HERE" },
 };
 
 export default function RootLayout({ children }) {
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "ArchitectureFirm",
-    name: "Yungola Build and Design",
-    url: "https://www.yungolabuildanddesign.com",
-    logo: "https://www.yungolabuildanddesign.com/logo.png",
-    image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1920&q=80",
-    description: "Premium architecture, design and construction company transforming ideas into built realities. From concept drawings to completed homes and commercial spaces across Nigeria.",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "5, Ayanleye Street, Ogba",
-      addressLocality: "Lagos State",
-      addressCountry: "NG"
-    },
-    contactPoint: {
-      "@type": "ContactPoint",
-      telephone: "+2349071518988",
-      contactType: "customer service"
-    },
-    sameAs: [
-      "https://instagram.com",
-      "https://linkedin.com"
-    ]
-  };
-
   return (
     <html
       lang="en"
       className={`${hankenGrotesk.variable} ${josefinSans.variable} ${montserrat.variable} ${oswald.variable} h-full antialiased dark`}
     >
       <head>
+        {/* Global Organization + Website schemas (root-level, injected on every page) */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema()),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteSchema()),
+          }}
         />
       </head>
       <body className="min-h-full flex flex-col bg-darkBackground text-darkForeground font-body-md overflow-x-hidden">
