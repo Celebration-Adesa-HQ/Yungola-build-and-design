@@ -4,6 +4,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppFloat from "@/components/layout/WhatsAppFloat";
 import { Calendar, Phone } from "lucide-react";
+import { Analytics } from "@vercel/analytics/next";
 import Link from "next/link";
 import { navigation, homeContent } from "@/lib/data/siteContent";
 import { organizationSchema, websiteSchema } from "@/lib/seo/structured-data";
@@ -169,6 +170,7 @@ export default function RootLayout({ children }) {
         </section>
         <Footer />
         <WhatsAppFloat />
+        <Analytics />
       </body>
     </html>
   );
