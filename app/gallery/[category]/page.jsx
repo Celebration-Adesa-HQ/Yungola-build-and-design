@@ -12,7 +12,7 @@ import { BASE_URL, GLOBAL_KEYWORDS } from "@/lib/seo/metadata";
 // ─── Per-category SEO copy ────────────────────────────────────────────────────
 const CATEGORY_SEO = {
   "3d-design": {
-    title: "3D Architectural Design Portfolio | Photorealistic Renders | Yungola",
+    title: "3D Architectural Design Portfolio",
     description:
       "Explore Yungola's hyper-realistic 3D architectural visualization portfolio. Photorealistic renders and immersive walkthroughs of residential and commercial projects across Nigeria.",
     keywords: [
@@ -24,7 +24,7 @@ const CATEGORY_SEO = {
     ],
   },
   construction: {
-    title: "Construction Portfolio | Luxury Build Projects Nigeria | Yungola",
+    title: "Construction Portfolio",
     description:
       "View Yungola's completed luxury construction portfolio. Master-crafted residential estates and commercial builds executed with uncompromising engineering standards across Lagos and Nigeria.",
     keywords: [
@@ -36,7 +36,7 @@ const CATEGORY_SEO = {
     ],
   },
   drawing: {
-    title: "Architectural Drawing Portfolio | Precision Blueprints | Yungola",
+    title: "Architectural Drawing Portfolio",
     description:
       "Discover Yungola's architectural drawing and blueprinting portfolio. Precision spatial planning, structural drawings, and conceptual development for luxury homes and commercial spaces.",
     keywords: [
@@ -58,7 +58,7 @@ export async function generateMetadata({ params }) {
 
   if (!seo) {
     return {
-      title: "Category Portfolio | Yungola Build and Design",
+      title: "Category Portfolio",
       description: "Explore our architectural and construction portfolio.",
     };
   }

@@ -46,7 +46,7 @@ export const metadata = {
   metadataBase: new URL(BASE_URL),
 
   title: {
-    default: "Yungola Build and Design | Cinematic Architecture & Luxury Construction Nigeria",
+    default: "Yungola Build and Design | Architecture & Luxury Construction Nigeria",
     template: "%s | Yungola Build and Design",
   },
   description:
@@ -61,7 +61,7 @@ export const metadata = {
     locale: BRAND.locale,
     url: BASE_URL,
     siteName: BRAND.name,
-    title: "Yungola Build and Design | Cinematic Architecture & Luxury Construction Nigeria",
+    title: "Yungola Build and Design | Architecture & Luxury Construction Nigeria",
     description:
       "Premium cinematic architectural design and construction studio transforming ideas into luxury built realities across Nigeria.",
     images: [
@@ -69,7 +69,7 @@ export const metadata = {
         url: `${BASE_URL}/og/yungola-og-default.jpg`,
         width: 1200,
         height: 630,
-        alt: "Yungola Build and Design — Cinematic Architecture Nigeria",
+        alt: "Yungola Build and Design — Architecture Nigeria",
       },
     ],
   },
