@@ -12,12 +12,13 @@ export default function Hero() {
   const [animating, setAnimating] = useState(false);
 
   useEffect(() => {
+    // Removed 'current' from dependency array to prevent the timer from resetting on every slide change
     const timer = setInterval(() => {
       setCurrent((p) => (p === slides.length - 1 ? 0 : p + 1));
-    }, 6000);
+    }, 2000);
 
     return () => clearInterval(timer);
-  }, [current]);
+  }, []);
 
   const handlePrev = () => {
     if (animating) return;
@@ -33,6 +34,8 @@ export default function Hero() {
     setTimeout(() => setAnimating(false), 800);
   };
 
+  const currentSlide = slides[current];
+
   return (
     <section className="relative w-full h-screen overflow-hidden bg-[#131313]">
       {/* Background Slides */}
@@ -45,72 +48,72 @@ export default function Hero() {
         >
           <Image
             src={slide.bgImage}
-            alt={slide.headline}
+            alt={`Hero background ${index + 1}`}
             fill
             priority={index === 0}
             sizes="100vw"
-            className="object-cover scale-105 transition-transform duration-[6000ms]"
+            className="object-cover scale-105 transition-transform duration-2000"
             style={{
               transform: index === current ? "scale(1.08)" : "scale(1)",
             }}
           />
 
           {/* Glass Backdrop Overlay */}
-          <div className="absolute inset-0 bg-black/40 " />
+          <div className="absolute inset-0 bg-black/50" />
         </div>
       ))}
 
       {/* Content */}
       <main className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-4 select-none">
-        {slides.map((slide, index) => {
-          if (index !== current) return null;
-
-          return (
-            <div
-              key={slide.id}
-              className="flex flex-col items-center max-w-4xl mx-auto"
+        <div className="flex flex-col items-center max-w-5xl mx-auto">
+          {/* Dynamic Headline with Static "We" and "it" */}
+          <h1 className="text-4xl md:text-6xl flex-col lg:text-6xl xl:text-7xl font-bold uppercase tracking-wider mb-6 leading-tight font-montserrat flex flex-wrap justify-center items-center gap-x-3 md:gap-x-6">
+            <span className="text-white animate-fade-up">
+              {currentSlide.headlinePrefix}
+            </span>
+            {/* Key prop forces React to re-mount this span, triggering the fade-up animation cleanly */}
+            <span
+              key={currentSlide.headlineAction}
+              className="text-accent-dark inline-block min-w-section-gap md:min-w-[280px] animate-fade-up"
             >
-              <h2 className="uppercase tracking-[0.25em] text-xs md:text-sm font-bold mb-4 text-accent font-montserrat animate-fade-up">
-                {slide.subHeadline}
-              </h2>
+              {currentSlide.headlineAction}
+            </span>
+            <span className="text-white animate-fade-up">
+              {currentSlide.headlineSuffix}
+            </span>
+          </h1>
 
-              <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold uppercase tracking-wider mb-8 leading-tight text-white font-montserrat animate-fade-up">
-                {slide.headline}{" "}<br/>
-                <span className="text-accent-dark">{slide.highlight}</span>
-              </h1>
+          {/* Static Subheadline at the bottom */}
+          <p className="text-lg md:text-xl text-gray-200 font-medium tracking-wide mb-10 leading-relaxed max-w-3xl mx-auto animate-fade-up delay-100">
+            {currentSlide.subHeadline}
+          </p>
 
-              {/* <h2 className="text-xl text-accent md:text-2xl lg:text-3xl xl:text-4xl font-bold uppercase tracking-wider mb-8 leading-tight font-montserrat animate-fade-up">
-                {slide.bottomText}
-              </h2> */}
-
-              <Link
-                href={slide.link}
-                className="group bg-accent text-foreground hover:bg-accent/80 px-8 py-4 uppercase tracking-[0.2em] text-xs font-bold flex items-center gap-3 rounded-sm shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
-              >
-                Explore Gallery
-                <svg
-                  className="h-4 w-4 transform group-hover:translate-x-1 transition-transform duration-300"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
-              </Link>
-            </div>
-          );
-        })}
+          <Link
+            href={currentSlide.link}
+            className="group bg-accent text-foreground hover:bg-accent/80 px-8 py-4 uppercase tracking-[0.2em] text-xs font-bold flex items-center gap-3 rounded-sm shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 animate-fade-up delay-200"
+          >
+            Explore Gallery
+            <svg
+              className="h-4 w-4 transform group-hover:translate-x-1 transition-transform duration-300"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
+          </Link>
+        </div>
       </main>
 
       {/* Controls */}
       <button
         onClick={handlePrev}
-        className="absolute left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-[#ffe08b]/20 bg-[#131313]/60 text-[#ffe08b] hover:bg-[#ffe08b] hover:text-[#131313] flex items-center justify-center transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-[#ffe08b] cursor-pointer"
+        className="absolute left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-[#ffe08b]/20 bg-[#131313]/60 text-[#ffe08b] hover:bg-[#ffe08b] hover:text-[#131313] flex items-center justify-center transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-[#ffe08b] cursor-pointer backdrop-blur-sm"
         aria-label="Previous slide"
       >
         <svg
@@ -130,7 +133,7 @@ export default function Hero() {
 
       <button
         onClick={handleNext}
-        className="absolute right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-[#ffe08b]/20 bg-[#131313]/60 text-[#ffe08b] hover:bg-[#ffe08b] hover:text-[#131313] flex items-center justify-center transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-[#ffe08b] cursor-pointer"
+        className="absolute right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-[#ffe08b]/20 bg-[#131313]/60 text-[#ffe08b] hover:bg-[#ffe08b] hover:text-[#131313] flex items-center justify-center transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-[#ffe08b] cursor-pointer backdrop-blur-sm"
         aria-label="Next slide"
       >
         <svg
@@ -149,7 +152,12 @@ export default function Hero() {
         {slides.map((_, i) => (
           <button
             key={i}
-            onClick={() => setCurrent(i)}
+            onClick={() => {
+              if (animating) return;
+              setAnimating(true);
+              setCurrent(i);
+              setTimeout(() => setAnimating(false), 800);
+            }}
             className={`h-1.5 transition-all duration-500 cursor-pointer rounded-full ${
               current === i
                 ? "w-12 bg-accent"
