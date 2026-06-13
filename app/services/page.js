@@ -85,12 +85,6 @@ export default function ServicesPage() {
           <CoreCapabilities />
         </section>
 
-        {/* Full-Width Sections */}
-        <div className="bg-surface-container-low/50">
-          <InteriorStyles />
-          <MaterialSamples />
-        </div>
-
         {/* Optional: Subtle bottom accent bar */}
         <div className="h-1 bg-linear-to-r from-accent via-secondary to-tertiary" />
       </div>

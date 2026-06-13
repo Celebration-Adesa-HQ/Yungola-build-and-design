@@ -113,7 +113,7 @@ export default function Hero() {
       {/* Controls */}
       <button
         onClick={handlePrev}
-        className="absolute left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-[#ffe08b]/20 bg-[#131313]/60 text-[#ffe08b] hover:bg-[#ffe08b] hover:text-[#131313] flex items-center justify-center transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-[#ffe08b] cursor-pointer backdrop-blur-sm"
+        className="absolute left-6 max-sm:left-1 top-1/2 max-sm:top-2/5 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-[#ffe08b]/20 bg-[#131313]/60 text-[#ffe08b] hover:bg-[#ffe08b] hover:text-[#131313] flex items-center justify-center transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-[#ffe08b] cursor-pointer backdrop-blur-sm"
         aria-label="Previous slide"
       >
         <svg
@@ -133,7 +133,7 @@ export default function Hero() {
 
       <button
         onClick={handleNext}
-        className="absolute right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-[#ffe08b]/20 bg-[#131313]/60 text-[#ffe08b] hover:bg-[#ffe08b] hover:text-[#131313] flex items-center justify-center transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-[#ffe08b] cursor-pointer backdrop-blur-sm"
+        className="absolute right-6 max-sm:right-1 top-1/2 max-sm:top-2/5 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-[#ffe08b]/20 bg-[#131313]/60 text-[#ffe08b] hover:bg-[#ffe08b] hover:text-[#131313] flex items-center justify-center transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-[#ffe08b] cursor-pointer backdrop-blur-sm"
         aria-label="Next slide"
       >
         <svg
