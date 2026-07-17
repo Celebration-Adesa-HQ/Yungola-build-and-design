@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { contactSchema } from "@/schemas/contact";
 import ContactEmail from "@/components/emails/ContactEmail";
+import ContactConfirmationEmail from "@/components/emails/ContactConfirmationEmail";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -59,9 +60,9 @@ export async function POST(req) {
       );
     }
 
-    // 6. Execute Secure Action
+    // 6. Execute Secure Action — internal notification to the team
     const { data, error } = await resend.emails.send({
-      from: `YUNGOLA Contact <${process.env.RESEND_FROM_EMAIL}>`,
+      from: `YUNGOLA BUILD AND DESIGN Contact <${process.env.RESEND_FROM_EMAIL}>`,
       to: [process.env.RESEND_TO_EMAIL],
       subject: `New Inquiry from ${validatedData.name}`,
       replyTo: validatedData.email,
@@ -69,11 +70,28 @@ export async function POST(req) {
     });
 
     if (error) {
-      console.error("Resend Error:", error);
+      console.error("Resend Error (internal):", error);
       return NextResponse.json(
         { success: false, error: "Failed to send message. Please try again." },
         { status: 500 }
       );
+    }
+
+    // 7. Send confirmation email to the user
+    const { error: confirmError } = await resend.emails.send({
+      from: `YUNGOLA BUILD AND DESIGN <${process.env.RESEND_FROM_EMAIL}>`,
+      to: [validatedData.email],
+      subject: "We've received your message — YUNGOLA BUILD AND DESIGN",
+      react: React.createElement(ContactConfirmationEmail, {
+        name: validatedData.name,
+        subject: validatedData.subject,
+        message: validatedData.message,
+      }),
+    });
+
+    if (confirmError) {
+      // Log but don't fail — the internal notification already went through
+      console.error("Resend Error (confirmation):", confirmError);
     }
 
     return NextResponse.json(
