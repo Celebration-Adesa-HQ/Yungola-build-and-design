@@ -43,7 +43,7 @@ export default function ContactPage() {
         <section className="py-24 px-6 lg:px-12 max-w-7xl mx-auto border-x border-outline-variant">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 items-start">
             <ContactForm />
-            <OfficeDirectory />
+            <OfficeDirectory /> 
           </div>
         </section>
       </div>
