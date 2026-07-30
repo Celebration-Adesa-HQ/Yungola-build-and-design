@@ -107,8 +107,8 @@ export default function OfficeDirectory() {
         className="relative h-72 rounded-sm overflow-hidden bg-surface-container border border-outline-variant shadow-2xl group cursor-pointer"
       >
         <iframe
-          title="Yungola Build and Design — 5 Ayanleye Street, Ogba, Lagos"
-          src="https://maps.google.com/maps?q=5+Ayanleye+Street,+Ogba,+Lagos+State,+Nigeria&t=&z=17&ie=UTF8&iwloc=&output=embed"
+          title="Yungola Build and Design — Plot 75, Block 3B, Ogunnusi Road, Grammar School Bus Stop, Ojodu, Lagos"
+          src="https://maps.google.com/maps?q=Plot+75,+Block+3B,+Ogunnusi+Road,+Grammar+School+Bus+Stop,+Ojodu,+Lagos,+Nigeria&t=&z=17&ie=UTF8&iwloc=&output=embed"
           width="100%"
           height="100%"
           style={{ border: 0, filter: "grayscale(90%) contrast(1.2)" }}
@@ -122,7 +122,7 @@ export default function OfficeDirectory() {
             Lagos Office
           </span>
           <span className="text-[9px] text-on-surface-variant font-hanken block mt-0.5">
-            5, Ayanleye St, Ogba
+            Plot 75, Block 3B, Ogunnusi Rd, Ojodu
           </span>
         </div>
       </motion.div>

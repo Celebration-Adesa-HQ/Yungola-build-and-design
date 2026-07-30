@@ -24,7 +24,7 @@ const HOME_FAQS = [
   {
     question: "Where is Yungola Build and Design located?",
     answer:
-      "Our headquarters is at 5, Ayanleye Street, Ogba, Lagos State, Nigeria. We serve clients in Lagos, Abuja, Port Harcourt, and other major cities across Nigeria.",
+      "Our headquarters is at Plot 75, Block 3B, Ogunnusi Road, Grammar School Bus Stop, Ojodu, Lagos State, Nigeria. We serve clients in Lagos, Abuja, Port Harcourt, and other major cities across Nigeria.",
   },
   {
     question: "How much does it cost to build a luxury house with Yungola?",

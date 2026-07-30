@@ -25,7 +25,7 @@ export default function ContactPage() {
             url: `${BASE_URL}/contact`,
             name: "Contact Us | Consult with Yungola Build and Design | Lagos Nigeria",
             description:
-              "Ready to build your vision? Contact Yungola Build and Design for a free consultation. Our principal architects are available Mon–Fri to discuss your residential or commercial project. Located in Ogba, Lagos.",
+              "Ready to build your vision? Contact Yungola Build and Design for a free consultation. Our principal architects are available Mon–Fri to discuss your residential or commercial project. Located in Ojodu, Lagos.",
             image: `${BASE_URL}/og/yungola-og-contact.jpg`,
           }),
           breadcrumbSchema([
